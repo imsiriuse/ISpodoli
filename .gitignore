@@ -1,0 +1,5 @@
+.idea/
+venv/
+.venv/
+reservations/modules/secretsettings.py
+reservations/db.sqlite3
