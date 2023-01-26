@@ -17,9 +17,7 @@ from booking.settings import (BOOKING_BG, BOOKING_DESC, BOOKING_DISABLE_URL,
 from booking.utils import BookingSettingMixin
 
 
-# # # # # # #
 # Admin Part
-# # # # # # #
 class BookingHomeView(BookingSettingMixin, TemplateView):
     model = Booking
     template_name = "booking/admin/dashboard.html"

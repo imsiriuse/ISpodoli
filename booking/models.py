@@ -20,6 +20,7 @@ BOOKING_PERIOD = (
     ("180","3H"),
 )
 
+
 class Booking(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, blank=True, null=True)
@@ -32,7 +33,6 @@ class Booking(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
 
     def __str__(self) -> str:
         return self.user_name or "(No Name)"
