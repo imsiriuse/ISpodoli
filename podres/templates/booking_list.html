@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Booking List
+{% endblock %}
+
+{% block content %}
+  <h1>Booking List</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Room</th>
+        <th scope="col">User</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+        <tr>
+          <th scope="row">{{ booking.id }}</th>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.user }}</td>
+          <td>{{ booking.start_date }}</td>
+          <td>{{ booking.end_date }}</td>
+          <td>
+            <a href="{% url 'booking_detail' booking.id %}" class="btn btn-sm btn-primary">View</a>
+            <a href="{% url 'booking_edit' booking.id %}" class="btn btn-sm btn-secondary">Edit</a>
+            <a href="{% url 'booking_delete' booking.id %}" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No bookings found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
