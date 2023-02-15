@@ -8,9 +8,23 @@ class CalendarType(models.TextChoices):
     MONTHLY = 'M', 'Monthly'
 
 
-class RoomType(models.Model):
+class BlockSize(models.TextChoices):
+    HOUR = 'H', 'Hour'
+    HALF_HOUR = '30', 'Half hour'
+    DOUBLE_HOUR = '2H', 'Double hour'
+    DAY = 'D', 'Day'
+    WEEK = 'W', 'Week'
+
+
+class ServiceType(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
+    block_size = models.CharField(
+        max_length=2,
+        choices=BlockSize.choices,
+        default=BlockSize.HOUR,
+    )
+
     calendar_type = models.CharField(
         max_length=1,
         choices=CalendarType.choices,
@@ -21,34 +35,19 @@ class RoomType(models.Model):
         return self.name
 
 
-class Room(models.Model):
-    room_number = models.PositiveIntegerField()
-    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
-    capacity = models.PositiveIntegerField()
+class Service(models.Model):
+    name = models.CharField(max_length=50)
+    room_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
     is_available = models.BooleanField(default=True)
-    building_mark = models.CharField(max_length=1)
-    banned_users = models.ManyToManyField(User, through='BannedUser', related_name='banned_rooms')
 
     def __str__(self):
-        return f"Room {self.room_number}"
+        return f"Room {self.name} of type {self.room_type}"
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Service, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     start_date = models.DateField()
-    end_date = models.DateField()
 
     def __str__(self):
-        return f"Booking for room {self.room} from {self.start_date} to {self.end_date}"
-
-
-class BannedUser(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    banned_from = models.DateField()
-    banned_to = models.DateField()
-    reason = models.TextField()
-
-    def __str__(self):
-        return f"{self.user} banned from {self.room} from {self.banned_from} to {self.banned_to} for reason: {self.reason}"
+        return f"Booking for room {self.room} from {self.start_date} by {self.user}"
