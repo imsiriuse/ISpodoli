@@ -4,34 +4,22 @@ from .models import Service, Booking
 
 
 def service_list(request):
-    rooms = Service.objects.filter(is_available=True)
-    return render(request, 'service_list.html', {'rooms': rooms})
+    services = Service.objects.filter(is_available=True)
+    return render(request, 'service_list.html', {'services': services})
 
 
-def room_detail(request, room_id):
-    room = get_object_or_404(Service, id=room_id)
-    return render(request, 'room_detail.html', {'room': room})
-
-
-def book_room(request, room_id):
-    room = Service.objects.get(id=room_id)
-    if not room.is_available:
-        return redirect('room_list')
-
+def service_detail(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
     if request.method == 'POST':
         start_date = timezone.datetime.strptime(request.POST['start_date'], '%Y-%m-%d').date()
-        end_date = timezone.datetime.strptime(request.POST['end_date'], '%Y-%m-%d').date()
-        booking = Booking(room=room, user=request.user, start_date=start_date, end_date=end_date)
+        booking = Booking(room=service, user=request.user, start_date=start_date)
         booking.save()
-        room.is_available = False
-        room.save()
-        return redirect('booking_detail', booking_id=booking.id)
-    else:
-        return render(request, 'book_room.html', {'room': room})
+
+    return render(request, 'service_detail.html', {'service': service})
 
 
 def booking_list(request):
-    bookings = Booking.objects.filter(user=request.user)
+    bookings = Booking.objects.filter()
     return render(request, 'booking_list.html', {'bookings': bookings})
 
 
