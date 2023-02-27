@@ -1,21 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from .models import Room, Booking, RoomType
+from .models import Service, Booking
 
 
-def room_list(request):
-    rooms = Room.objects.filter(is_available=True)
+def service_list(request):
+    rooms = Service.objects.filter(is_available=True)
     return render(request, 'service_list.html', {'rooms': rooms})
 
 
 def room_detail(request, room_id):
-    room = get_object_or_404(Room, id=room_id)
+    room = get_object_or_404(Service, id=room_id)
     return render(request, 'room_detail.html', {'room': room})
 
 
 def book_room(request, room_id):
-    room = Room.objects.get(id=room_id)
+    room = Service.objects.get(id=room_id)
     if not room.is_available:
         return redirect('room_list')
 

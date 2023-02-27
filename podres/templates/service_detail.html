@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ service.room_type.name }} - {{ service.name }}</h1>
+  <p>Description: {{ service.description }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" required>
+    <br>
+    <button type="submit">Save booking</button>
+  </form>
+{% endblock %}
