@@ -17,7 +17,7 @@ class BlockSize(models.TextChoices):
 
 
 class ServiceType(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default="")
     description = models.TextField()
     block_size = models.CharField(
         max_length=2,
@@ -36,18 +36,18 @@ class ServiceType(models.Model):
 
 
 class Service(models.Model):
-    name = models.CharField(max_length=50)
-    room_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, default="")
     is_available = models.BooleanField(default=True)
+    room_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):
         return f"Room {self.name} of type {self.room_type}"
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(Service, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     start_date = models.DateField()
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):
-        return f"Booking for room {self.room} from {self.start_date} by {self.user}"
+        return f"Booking for {self.service.room_type.name} - {self.service} from {self.start_date} by {self.user}"

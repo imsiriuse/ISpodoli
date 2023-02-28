@@ -12,7 +12,7 @@ def service_detail(request, service_id):
     service = get_object_or_404(Service, id=service_id)
     if request.method == 'POST':
         start_date = timezone.datetime.strptime(request.POST['start_date'], '%Y-%m-%d').date()
-        booking = Booking(room=service, user=request.user, start_date=start_date)
+        booking = Booking(user=request.user, start_date=start_date)
         booking.save()
 
     return render(request, 'service_detail.html', {'service': service})
