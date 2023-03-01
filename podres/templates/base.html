@@ -8,7 +8,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'room_list' %}">Booking System</a>
+      <a class="navbar-brand" href="{% url 'service_list' %}">Booking System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,10 +16,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'room_list' %}">Rooms</a>
+            <a class="nav-link" href="{% url 'booking_list' %}">Bookings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'booking_list' %}">Bookings</a>
+            <a class="nav-link" href="{% url 'rooms_list' %}">Rooms</a>
           </li>
         </ul>
       </div>

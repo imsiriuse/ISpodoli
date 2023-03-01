@@ -11,4 +11,11 @@
     <button type="submit">Save booking</button>
   </form>
   <h1>Bookings:</h1>
+    <ul>
+      {% for booking in bookings %}
+        <li>{{ booking.start_date }}</li>
+      {% empty %}
+        <li>No bookings</li>
+      {% endfor %}
+    </ul>
 {% endblock %}
