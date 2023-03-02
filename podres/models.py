@@ -35,6 +35,7 @@ class Floor(models.TextChoices):
 
 
 class Side(models.TextChoices):
+    NO = 'n', 'No side'
     LEFT = 'a', 'Left side'
     RIGHT = 'b', 'Right side'
 
@@ -70,18 +71,18 @@ class Service(models.Model):
 class Room(models.Model):
     block = models.CharField(max_length=1, choices=Building.choices, default=Building.A)
     floor = models.CharField(max_length=1, choices=Floor.choices, default=Floor.ZERO)
-    side = models.CharField(max_length=1, choices=Side.choices, default=Side.LEFT)
+    side = models.CharField(max_length=1, choices=Side.choices, default=Side.NO)
     room = models.CharField(max_length=4, default="")
 
     def __str__(self):
-        return f"Room {self.building}{self.name}{self.side}"
+        return f"Room {self.block} {self.room} {self.side}"
 
 
 class Booking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, default=None, null=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, default=None, null=True)
     start_date = models.DateField()
 
     def __str__(self):
-        return f"Booking for {self.service.room_type.name} - {self.service} from {self.start_date} by {self.user}"
+        if self.service:
+            return f"Booking for {self.service.name} from {self.start_date}"

@@ -3,17 +3,30 @@
 {% block content %}
   <h1>{{ service.room_type.name }} - {{ service.name }}</h1>
   <p>Description: {{ service.description }}</p>
-  <form method="post">
+  <form method="post" action="{% url 'create_booking' service_id=id %}">
     {% csrf_token %}
-    <label for="start_date">Start Date:</label>
     <input type="date" name="start_date" required>
-    <br>
     <button type="submit">Save booking</button>
   </form>
   <h1>Bookings:</h1>
     <ul>
       {% for booking in bookings %}
-        <li>{{ booking.start_date }}</li>
+        <tr>
+          <th scope="row">{{ booking.id }}</th>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.user }}</td>
+          <td>{{ booking.start_date }}</td>
+          <td>
+            <a href="{% url 'booking_detail' booking.id %}" class="btn btn-sm btn-primary">View</a>
+          </td>
+          <td>
+            <form method="POST" action="{% url 'delete_booking' booking_id=booking.id %}">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+
       {% empty %}
         <li>No bookings</li>
       {% endfor %}
