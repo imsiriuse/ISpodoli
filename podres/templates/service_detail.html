@@ -3,10 +3,13 @@
 {% block content %}
   <h1>{{ service.room_type.name }} - {{ service.name }}</h1>
   <p>Description: {{ service.description }}</p>
-  <form method="post" action="{% url 'create_booking' service_id=id %}">
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  {{ form.media }}
+  <form method="post", name="date">
     {% csrf_token %}
-    <input type="date" name="start_date" required>
-    <button type="submit">Save booking</button>
+    {% bootstrap_form form %}
   </form>
   <h1>Bookings:</h1>
     <ul>

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Service, Booking, Room
 from django.views.decorators.http import require_POST
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
+from .forms import DateForm
 
 
 def service_list(request):
@@ -12,10 +14,15 @@ def service_list(request):
 def service_detail(request, service_id):
     service = get_object_or_404(Service, id=service_id)
     bookings = Booking.objects.filter(service=service)
+
+    form = DateForm()
+    form.fields['start_date'].widget = DateTimePickerInput()
+
     context = {
         'service': service,
         'bookings': bookings,
         'id': service_id,
+        'form': form,
     }
 
     return render(request, 'service_detail.html', context)
