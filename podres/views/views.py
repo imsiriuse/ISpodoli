@@ -1,60 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import Service, Booking, Room
+from podres.models import Service, Booking, Room
 from django.views.decorators.http import require_POST
-from datetime import date, datetime
-from .plugins.bookingcalendar import BookingCalendar
 
 
 def service_list(request):
     services = Service.objects.filter(is_available=True)
     return render(request, 'service_list.html', {'services': services})
-
-
-def create_times(start, end):
-    if end < start:
-        return []
-
-    time_array = []
-    for i in range(start, end):
-        if i < 10:
-            time = '0' + str(i) + ':00'
-        else:
-            time = str(i) + ':00'
-
-        time_array.append(time)
-
-    return time_array
-
-
-def service_detail(request, pk):
-    service = get_object_or_404(Service, id=pk)
-
-    context = {
-        'service': service,
-        'id': pk,
-    }
-
-    query = request.GET.dict()
-
-    if 'date' not in query:
-        today = date.today()
-    else:
-        today = datetime.strptime(query['date'], '%d-%m-%Y')
-
-    context['day'] = int(today.strftime("%d"))
-    context['month'] = int(today.strftime("%m"))
-    context['year'] = int(today.strftime("%Y"))
-
-    calendar = BookingCalendar(pk, context['year'], context['month'], context['day'])
-
-    context['calendar'] = calendar.formatmonth()
-
-    bookings = Booking.objects.filter(service=service, date=today)
-
-    context['bookings'] = bookings
-
-    return render(request, 'service_detail.html', context)
 
 
 @require_POST

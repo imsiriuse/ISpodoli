@@ -11,14 +11,7 @@ class BookingCalendar(HTMLCalendar):
         self.month = month
         self.day = day
 
-    def formatday(self, day, weekday):
-        if day == 0:
-            return '<td class="noday">&nbsp;</td>'
-        tag = '<td class="' + self.cssclasses[weekday] + '">'
-        tag = tag + '<a href=?date=%d-%d-%d>%d</a>' % (day, self.month, self.year, day)
-        return tag
-
-    def formatmonth(self, withyear=True):
+    def gethtml(self):
         """
         Return a formatted month as a table.
         """
@@ -39,7 +32,7 @@ class BookingCalendar(HTMLCalendar):
         a('<table border="0" cellpadding="0" cellspacing="0" class="%s">' % (
             self.cssclass_month))
         a('\n')
-        a(self.formatmonthname(self.year, self.month, withyear=withyear))
+        a(self.formatmonthname(self.year, self.month, withyear=True))
         a('\n')
         a(self.formatweekheader())
         a('\n')
