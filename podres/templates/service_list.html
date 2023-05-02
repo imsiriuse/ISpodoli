@@ -5,7 +5,7 @@
   <ul>
     {% for service in services %}
       <li>
-        <p><a href="{% url 'service_detail' service.id %}">{{ service.room_type.name }} - {{ service.name }} </a></p>
+        <p><a href="{% url 'service_detail' service.id %}">{{ service.service_type.name }} - {{ service.name }} </a></p>
       </li>
     {% empty %}
       <p>No services available at this time.</p>

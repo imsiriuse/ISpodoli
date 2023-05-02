@@ -1,5 +1,6 @@
 from calendar import HTMLCalendar
 import datetime
+from dateutil import relativedelta
 
 
 class BookingCalendar(HTMLCalendar):
@@ -27,7 +28,7 @@ class BookingCalendar(HTMLCalendar):
         # add previous day into calendar
         a('<div>')
 
-        prev = datetime.date(self.year, self.month, self.day) - datetime.timedelta(days=1)
+        prev = datetime.date(self.year, self.month, self.day) - relativedelta.relativedelta(months=1)
 
         a('<div style="display: inline-block">')
         a('<a href="?date=%d-%d-%d">Previous</a>' % (prev.day, prev.month, prev.year))
@@ -52,7 +53,7 @@ class BookingCalendar(HTMLCalendar):
         # add next day into calendar
         a('<div style="display: inline-block">')
 
-        after = datetime.date(self.year, self.month, self.day) + datetime.timedelta(days=1)
+        after = datetime.date(self.year, self.month, self.day) + relativedelta.relativedelta(months=1)
 
         a('<a href="?date=%d-%d-%d">Next</a>' % (after.day, after.month, after.year))
         a('</div>')

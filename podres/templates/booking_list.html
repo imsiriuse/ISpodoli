@@ -27,7 +27,7 @@
             <a href="{% url 'booking_detail' booking.id %}" class="btn btn-sm btn-primary">View</a>
           </td>
           <td>
-            <form method="POST" action="{% url 'delete_booking' booking_id=booking.id %}">
+            <form method="POST" action="{% url 'delete_booking' booking.id %}">
               {% csrf_token %}
               <button type="submit">Delete</button>
             </form>

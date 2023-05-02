@@ -2,20 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class CalendarType(models.TextChoices):
-    DAILY = 'D', 'Daily'
-    WEEKLY = 'W', 'Weekly'
-    MONTHLY = 'M', 'Monthly'
-
-
-class BlockSize(models.TextChoices):
-    HOUR = 'H', 'Hour'
-    HALF_HOUR = '30', 'Half hour'
-    DOUBLE_HOUR = '2H', 'Double hour'
-    DAY = 'D', 'Day'
-    WEEK = 'W', 'Week'
-
-
 class Building(models.TextChoices):
     A = 'A', 'Building A'
     B = 'B', 'Building B'
@@ -43,17 +29,8 @@ class Side(models.TextChoices):
 class ServiceType(models.Model):
     name = models.CharField(max_length=50, default="")
     description = models.TextField()
-    block_size = models.CharField(
-        max_length=2,
-        choices=BlockSize.choices,
-        default=BlockSize.HOUR,
-    )
-
-    calendar_type = models.CharField(
-        max_length=1,
-        choices=CalendarType.choices,
-        default=CalendarType.DAILY,
-    )
+    hour_min = models.IntegerField(default=0)
+    hour_max = models.IntegerField(default=24)
 
     def __str__(self):
         return self.name
@@ -62,10 +39,10 @@ class ServiceType(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=50, default="")
     is_available = models.BooleanField(default=True)
-    room_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, default=None, null=True)
+    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):
-        return f"Room {self.name} of type {self.room_type}"
+        return f"Service {self.name} of type {self.service_type.name}"
 
 
 class Room(models.Model):
@@ -79,10 +56,11 @@ class Room(models.Model):
 
 
 class Booking(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, default=None, null=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, default=None, null=True)
-    start_date = models.DateField()
+    date = models.DateField()
+    hour = models.IntegerField(default=0)
 
     def __str__(self):
         if self.service:
-            return f"Booking for {self.service.name} from {self.start_date}"
+            return f"Booking for {self.service.name} from {self.date}"
