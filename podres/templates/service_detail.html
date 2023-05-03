@@ -7,6 +7,25 @@
   <p>Description: {{ service.description }}</p>
   {{calendar|safe}}
   <h1>Bookings for {{ day }} - {{month}} - {{year}} </h1>
-  {{ timetable|safe }}
+    <table class="table">
+      <tr>
+        <th>Time</th>
+        <th>Room</th>
+      </tr>
+      {% for booking, time in bookings %}
+        <tr>
+          <td>{{ time }}</td>
+          {% if booking != None %}
+            <td> {{booking.room}}</td>
+          {% else %}
+            <td> None </td>
+          {% endif %}
+        </tr>
+      {% empty %}
+        <p>No bookings available at this time.</p>
+      {% endfor %}
+    </table>
 </center>
 {% endblock %}
+
+

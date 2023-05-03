@@ -1,6 +1,7 @@
 .idea/
 venv/
-db.sqlite3
 .env
 podres/migrations/
+podres/static/
 db-mirror/
+.gitignore

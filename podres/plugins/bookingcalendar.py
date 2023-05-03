@@ -10,6 +10,12 @@ class BookingCalendar(HTMLCalendar):
         self.year = year
         self.month = month
         self.day = day
+    def formatday(self, day, weekday):
+        if day == 0:
+            return '<td class="noday">&nbsp;</td>'
+        tag = '<td class="' + self.cssclasses[weekday] + '">'
+        tag = tag + '<a href=?date=%d-%d-%d>%d</a>' % (day, self.month, self.year, day)
+        return tag
 
     def gethtml(self):
         """

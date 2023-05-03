@@ -1,5 +1,6 @@
-from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Building(models.TextChoices):
@@ -26,14 +27,23 @@ class Side(models.TextChoices):
     RIGHT = 'b', 'Right side'
 
 
+# TODO:
+# delete null=True from all models
+# delete defalut=None from all models
+# add validators to all models
+
 class ServiceType(models.Model):
-    name = models.CharField(max_length=50, default="")
+    name = models.CharField(max_length=50)
     description = models.TextField()
-    hour_min = models.IntegerField(default=0)
-    hour_max = models.IntegerField(default=24)
+    hour_min = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(23)])
+    hour_max = models.IntegerField(default=23, validators=[MinValueValidator(0), MaxValueValidator(23)])
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        if self.hour_min > self.hour_max:
+            raise ValidationError('Hour min must be less than hour max')
 
 
 class Service(models.Model):
@@ -59,7 +69,7 @@ class Booking(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE, default=None, null=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, default=None, null=True)
     date = models.DateField()
-    hour = models.IntegerField(default=0)
+    hour = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(23)])
 
     def __str__(self):
         if self.service:
