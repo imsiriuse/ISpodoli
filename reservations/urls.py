@@ -21,3 +21,4 @@ urlpatterns = [
     path('', include('podres.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
