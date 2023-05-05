@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 def profile(request):
     return render(request, 'profile.html')
 
+
+def about(request):
+    return render(request, 'about.html')
+
+
 def homepage(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -30,8 +35,6 @@ def create_booking(request, pk):
     previous_page = request.META.get('HTTP_REFERER')
     return redirect(previous_page)
 
-
-@login_required
 def booking_list(request):
     bookings = Booking.objects.filter()
     return render(request, 'booking_list.html', {'bookings': bookings})

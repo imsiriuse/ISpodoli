@@ -6,6 +6,9 @@ from podres.plugins.bookingcalendar import BookingCalendar
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ServiceDetail(View, LoginRequiredMixin):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'next'
+
     def gettimes(self, start, end):
         result = [None] * (end - start + 1)
         for i in range(0, end - start + 1):
@@ -31,14 +34,7 @@ class ServiceDetail(View, LoginRequiredMixin):
         return result
 
     def get(self, request, pk):
-
         service = get_object_or_404(Service, id=pk)
-
-        context = {
-            'service': service,
-            'id': pk,
-        }
-
         query = request.GET.dict()
 
         if 'date' not in query:
@@ -46,17 +42,22 @@ class ServiceDetail(View, LoginRequiredMixin):
         else:
             today = datetime.strptime(query['date'], '%d-%m-%Y')
 
-        context['day'] = int(today.strftime("%d"))
-        context['month'] = int(today.strftime("%m"))
-        context['year'] = int(today.strftime("%Y"))
-
-        calendar = BookingCalendar(pk, context['year'], context['month'], context['day'])
-
-        context['calendar'] = calendar.gethtml()
-
-        context['bookings'] = zip(
-            self.timetable(service, today),
-            self.gettimes(service.service_type.hour_min, service.service_type.hour_max)
+        calendar = BookingCalendar(
+            pk,
+            year=int(today.strftime("%Y")),
+            month=int(today.strftime("%m")),
+            day=int(today.strftime("%d"))
         )
+
+        context = {
+            'service': service,
+            'id': pk,
+            'calendar': calendar,
+            'calendarhtml': calendar.gethtml(),
+            'bookings': zip(
+                self.timetable(service, today),
+                self.gettimes(service.service_type.hour_min, service.service_type.hour_max)
+            ),
+        }
 
         return render(request, 'service_detail.html', context)

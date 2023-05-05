@@ -5,8 +5,8 @@
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
   <p>Description: {{ service.description }}</p>
-  {{calendar|safe}}
-  <h1>Bookings for {{ day }} - {{month}} - {{year}} </h1>
+  {{calendarhtml|safe}}
+  <h1>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h1>
     <table class="table">
       <tr>
         <th>Time</th>
