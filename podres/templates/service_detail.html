@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
-{% load django_bootstrap5 %}
 
 {% block content %}
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
   <p>Description: {{ service.description }}</p>
   {{calendarhtml|safe}}
-  <h1>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h1>
+
+  <a href="{% url 'create_booking' service=service.id year=calendar.year month=calendar.month day=calendar.day hour=0 %}">Book</a>
+
+  <h2>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h2>
     <table class="table">
       <tr>
         <th>Time</th>
@@ -27,5 +29,3 @@
     </table>
 </center>
 {% endblock %}
-
-

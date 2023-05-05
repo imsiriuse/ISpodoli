@@ -25,16 +25,17 @@ def service_list(request):
 
 
 @login_required
-@require_POST
-def create_booking(request, pk):
-    service = get_object_or_404(Service, id=pk)
-    start_date = timezone.datetime.strptime(request.POST['start_date'], '%Y-%m-%d').date()
-    booking = Booking(start_date=start_date, service=service)
-    booking.save()
+def test(request, service, day, month, year, hour):
+    context = {
+        'service': service,
+        'day': day,
+        'month': month,
+        'year': year,
+        'hour': hour,
+    }
+    return render(request, 'test.html', context)
 
-    previous_page = request.META.get('HTTP_REFERER')
-    return redirect(previous_page)
-
+@login_required
 def booking_list(request):
     bookings = Booking.objects.filter()
     return render(request, 'booking_list.html', {'bookings': bookings})
@@ -54,8 +55,3 @@ def delete_booking(request, pk):
 
     previous_page = request.META.get('HTTP_REFERER')
     return redirect(previous_page)
-
-@login_required
-def rooms_list(request):
-    rooms = Room.objects.filter()
-    return render(request, 'rooms_list.html', {'rooms': rooms})

@@ -5,7 +5,7 @@ from datetime import date, datetime
 from podres.plugins.bookingcalendar import BookingCalendar
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class ServiceDetail(View, LoginRequiredMixin):
+class ServiceDetailView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     redirect_field_name = 'next'
 
