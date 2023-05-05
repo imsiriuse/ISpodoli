@@ -3,9 +3,9 @@ from django.shortcuts import render, get_object_or_404
 from podres.models import Service, Booking
 from datetime import date, datetime
 from podres.plugins.bookingcalendar import BookingCalendar
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-class ServiceDetail(View):
+class ServiceDetail(View, LoginRequiredMixin):
     def gettimes(self, start, end):
         result = [None] * (end - start + 1)
         for i in range(0, end - start + 1):

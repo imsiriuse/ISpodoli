@@ -4,7 +4,9 @@ from .views.servicedetail import ServiceDetail
 
 
 urlpatterns = [
-    path('', service_list, name='service_list'),
+    path('', homepage, name='homepage'),
+    path('accounts/profile/', profile, name='profile'),
+    path('services/', service_list, name='service_list'),
     path('rooms/', rooms_list, name='rooms_list'),
     path('bookings/', booking_list, name='booking_list'),
     path('service/<int:pk>/', ServiceDetail.as_view(), name='service_detail'),
