@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
 
 
 class Building(models.TextChoices):
@@ -27,11 +28,6 @@ class Side(models.TextChoices):
     RIGHT = 'b', 'Right side'
 
 
-# TODO:
-# delete null=True from all models
-# delete defalut=None from all models
-# add validators to all models
-
 class ServiceType(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
@@ -47,9 +43,9 @@ class ServiceType(models.Model):
 
 
 class Service(models.Model):
-    name = models.CharField(max_length=50, default="")
+    name = models.CharField(max_length=50)
     is_available = models.BooleanField(default=True)
-    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, default=None, null=True)
+    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Service {self.name} of type {self.service_type.name}"
@@ -62,12 +58,25 @@ class Room(models.Model):
     room = models.CharField(max_length=4, default="")
 
     def __str__(self):
-        return f"Room {self.block} {self.room} {self.side}"
+        return f"{self.block} {self.room} {self.side}"
+
+
+class Booker(models.Model):
+    name = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+    def clean(self):
+        if not self.user:
+            raise ValidationError('User must be set')
+
+    def __str__(self):
+        return f"{self.name} {self.room}"
 
 
 class Booking(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, default=None, null=True)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, default=None, null=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    booker = models.ForeignKey(Booker, on_delete=models.CASCADE)
     date = models.DateField()
     hour = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(23)])
 

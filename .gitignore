@@ -3,5 +3,5 @@ venv/
 .env
 podres/migrations/
 podres/static/
-db-mirror/
+fixtures/
 .gitignore
