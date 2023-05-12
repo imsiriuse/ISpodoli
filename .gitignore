@@ -2,6 +2,6 @@
 venv/
 .env
 podres/migrations/
-podres/static/
+static/
 fixtures/
 .gitignore
