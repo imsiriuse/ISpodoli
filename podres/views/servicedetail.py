@@ -29,18 +29,22 @@ class ServiceDetailView(LoginRequiredMixin, View):
         result = [None] * (end - start + 1)
 
         for booking in bookings:
-            result[booking.hour] = booking
+            result[booking.hour - start] = booking
 
         return result
 
     def get(self, request, pk):
         service = get_object_or_404(Service, id=pk)
+
         query = request.GET.dict()
 
         if 'date' not in query:
             today = date.today()
         else:
-            today = datetime.strptime(query['date'], '%d-%m-%Y')
+            try:
+                today = datetime.strptime(query['date'], '%d-%m-%Y')
+            except ValueError:
+                today = date.today()
 
         calendar = BookingCalendar(
             pk,
@@ -56,7 +60,8 @@ class ServiceDetailView(LoginRequiredMixin, View):
             'calendarhtml': calendar.gethtml(),
             'bookings': zip(
                 self.timetable(service, today),
-                self.gettimes(service.service_type.hour_min, service.service_type.hour_max)
+                self.gettimes(service.service_type.hour_min, service.service_type.hour_max),
+                range(service.service_type.hour_min, service.service_type.hour_max + 1)
             ),
         }
 

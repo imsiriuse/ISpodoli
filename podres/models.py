@@ -62,7 +62,6 @@ class Room(models.Model):
 
 
 class Booker(models.Model):
-    name = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
@@ -71,7 +70,7 @@ class Booker(models.Model):
             raise ValidationError('User must be set')
 
     def __str__(self):
-        return f"{self.name} {self.room}"
+        return f"{self.user} {self.room}"
 
 
 class Booking(models.Model):

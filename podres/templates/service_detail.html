@@ -6,21 +6,27 @@
   <p>Description: {{ service.description }}</p>
   {{calendarhtml|safe}}
 
-  <a href="{% url 'create_booking' service=service.id year=calendar.year month=calendar.month day=calendar.day hour=0 %}">Book</a>
-
   <h2>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h2>
     <table class="table">
       <tr>
         <th>Time</th>
-        <th>Room</th>
+        <th>Booking</th>
       </tr>
-      {% for booking, time in bookings %}
+      {% for booking, time, hour in bookings %}
         <tr>
           <td>{{ time }}</td>
           {% if booking != None %}
-            <td> {{booking.room}}</td>
+            <td>
+              <a href="{% url 'delete_booking' booking.id %}" class="btn btn-sm btn-primary">
+                {{booking.booker.user.first_name}} {{booking.booker.user.last_name}} - {{booking.booker.room}}
+              </a>
+            </td>
           {% else %}
-            <td> None </td>
+            <td>
+              <a href="{% url 'create_booking' serviceid=service.id year=calendar.year month=calendar.month day=calendar.day hour=hour %}">
+                Book
+              </a>
+            </td>
           {% endif %}
         </tr>
       {% empty %}

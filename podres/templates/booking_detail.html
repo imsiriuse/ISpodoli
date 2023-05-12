@@ -9,15 +9,19 @@
   <table class="table">
     <tr>
       <th>Room:</th>
-      <td>{{ booking.room }}</td>
+      <td>{{ booking.booker.room }}</td>
     </tr>
     <tr>
       <th>User:</th>
-      <td>{{ booking.user }}</td>
+      <td>{{ booking.booker.user.first_name }} {{booking.booker.user.last_name}}</td>
     </tr>
     <tr>
-      <th>Start Date:</th>
-      <td>{{ booking.start_date }}</td>
+      <th>Date:</th>
+      <td>{{ booking.date }}</td>
+    </tr>
+    <tr>
+      <th>Hour:</th>
+      <td>{{ booking.hour }}</td>
     </tr>
   </table>
   <div class="d-flex justify-content-end">

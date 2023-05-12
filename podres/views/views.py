@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.utils import timezone
-from podres.models import Service, Booking, Room
-from django.views.decorators.http import require_POST
+from django.shortcuts import render, redirect
+from podres.models import Service, Booking
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -46,12 +44,3 @@ def booking_detail(request, pk):
     booking = Booking.objects.get(id=pk)
 
     return render(request, 'booking_detail.html', {'booking': booking})
-
-
-@login_required
-def delete_booking(request, pk):
-    booking = Booking.objects.get(id=pk)
-    booking.delete()
-
-    previous_page = request.META.get('HTTP_REFERER')
-    return redirect(previous_page)
