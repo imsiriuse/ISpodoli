@@ -10,14 +10,13 @@
         <div style="float: left">
           <a href="{% url 'service_detail' service.id %}">
             {{ service.service_type.name }} - {{ service.name }}
-          </a>
           <br>
           {% if service.service_type.image %}
             <img src="{{ media_url }}{{ service.service_type.image }}" alt="{{ service.service_type.name }}" width="400" height="400">
           {% else %}
             <img src="{% static 'img/default.svg' %}" alt="{{ service.service_type.name }}" width="400" height="400">
           {% endif %}
-
+          </a>
         </div>
     {% empty %}
       <p>No services available at this time.</p>

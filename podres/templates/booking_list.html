@@ -13,6 +13,7 @@
         <th scope="col">Room</th>
         <th scope="col">User</th>
         <th scope="col">Date</th>
+        <th scope="col">Time</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
@@ -23,6 +24,7 @@
           <td>{{ booking.booker.room }}</td>
           <td>{{ booking.booker.user.first_name }} {{ booking.booker.user.last_name }}</td>
           <td>{{ booking.date }}</td>
+          <td>{{ booking.hour }}</td>
         </tr>
       {% empty %}
         <tr>
