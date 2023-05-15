@@ -1,31 +1,7 @@
 from django.core.exceptions import ValidationError
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
-import os
-
-class Building(models.TextChoices):
-    A = 'A', 'Building A'
-    B = 'B', 'Building B'
-    C = 'C', 'Building C'
-    D = 'D', 'Building D'
-    E = 'E', 'Building E'
-    F = 'F', 'Building F'
-
-
-class Floor(models.TextChoices):
-    ZERO = '0', 'Ground floor'
-    ONE = '1', 'First floor'
-    TWO = '2', 'Second floor'
-    THREE = '3', 'Third floor'
-    FOUR = '4', 'Fourth floor'
-    FIVE = '5', 'Fifth floor'
-
-
-class Side(models.TextChoices):
-    NO = 'n', 'No side'
-    LEFT = 'a', 'Left side'
-    RIGHT = 'b', 'Right side'
+from .enums import *
 
 def validate_svg(val):
     if not val.name.endswith('.svg'):
@@ -57,7 +33,7 @@ class Service(models.Model):
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Service {self.name} of type {self.service_type.name}"
+        return f"{self.service_type.name} {self.name}"
 
 
 class Room(models.Model):
@@ -79,7 +55,7 @@ class Booker(models.Model):
             raise ValidationError('User must be set')
 
     def __str__(self):
-        return f"{self.user} {self.room}"
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 class Booking(models.Model):

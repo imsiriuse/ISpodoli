@@ -2,7 +2,7 @@
 venv/
 .env
 podres/migrations/
-static/
+/static/
 media/
 img/
 fixtures/
