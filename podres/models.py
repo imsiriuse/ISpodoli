@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
-
+import os
 
 class Building(models.TextChoices):
     A = 'A', 'Building A'
@@ -27,12 +27,21 @@ class Side(models.TextChoices):
     LEFT = 'a', 'Left side'
     RIGHT = 'b', 'Right side'
 
+def validate_svg(val):
+    if not val.name.endswith('.svg'):
+        raise ValidationError('Only svg files allowed')
 
 class ServiceType(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     hour_min = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(23)])
     hour_max = models.IntegerField(default=23, validators=[MinValueValidator(0), MaxValueValidator(23)])
+    image = models.FileField(
+        default=None,
+        blank=True,
+        upload_to='images/',
+        validators=[ validate_svg ],
+    )
 
     def __str__(self):
         return self.name

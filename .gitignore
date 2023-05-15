@@ -3,5 +3,7 @@ venv/
 .env
 podres/migrations/
 static/
+media/
+img/
 fixtures/
 .gitignore

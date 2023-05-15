@@ -4,7 +4,8 @@ from .views.servicedetail import ServiceDetailView
 from .views.createbooking import CreateBookingView
 from .views.deletebooking import DeleteBookingView
 from django.views.generic import TemplateView
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', service_list, name='service_list'),
@@ -16,3 +17,6 @@ urlpatterns = [
     path('createbooking/<int:serviceid>/<int:day>/<int:month>/<int:year>/<int:hour>', CreateBookingView.as_view(), name='create_booking'),
     path('booking_history/', booking_history, name='booking_history'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
