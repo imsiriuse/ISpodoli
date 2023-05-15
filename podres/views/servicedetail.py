@@ -9,15 +9,6 @@ class ServiceDetailView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     redirect_field_name = 'next'
 
-    def gettimes(self, start, end):
-        result = [None] * (end - start + 1)
-        for i in range(0, end - start + 1):
-            hour = start + i
-            if hour < 10:
-                result[i] = f"0{hour}:00"
-            else:
-                result[i] = f"{hour}:00"
-        return result
 
     def timetable(self, service, today):
         start = service.service_type.hour_min
@@ -60,7 +51,6 @@ class ServiceDetailView(LoginRequiredMixin, View):
             'calendarhtml': calendar.gethtml(),
             'bookings': zip(
                 self.timetable(service, today),
-                self.gettimes(service.service_type.hour_min, service.service_type.hour_max),
                 range(service.service_type.hour_min, service.service_type.hour_max + 1)
             ),
         }

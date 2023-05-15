@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load string_transform %}
+
+{% block title %}
+  {{ service.service_type.name }} - {{ service.name }}
+{% endblock %}
+
 {% block content %}
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
@@ -12,9 +18,9 @@
         <th scope="col">Time</th>
         <th scope="col">Booking</th>
       </tr>
-      {% for booking, time, hour in bookings %}
+      {% for booking, hour in bookings %}
         <tr>
-          <td>{{ time }}</td>
+          <td>{{ hour|hour_to_time }}</td>
           {% if booking != None %}
             <td>
               <a href="{% url 'delete_booking' booking.id %}" class="btn btn-sm btn-primary">
