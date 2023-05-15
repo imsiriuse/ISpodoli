@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <h1>About website</h1>
+  <p>Website is a dormitory service reservation system that helps students and visitors easily book rooms and services online.</p>
+  <p>If you have any questions or feedback, please don't hesitate to <a href="imsiriuse@gmail.com">contact us</a>.</p>
+</div>
+<div class="container">
+  <h1>Service descriptions and rules</h1>
+  {% for service_type in service_types %}
+    <h2>{{service_type.name}}</h2>
+    <p>{{service_type.description}}</p>
+  {% empty %}
+    <p>No service types available.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
