@@ -22,12 +22,3 @@ class Side(models.TextChoices):
     NO = 'n', 'No side'
     LEFT = 'a', 'Left side'
     RIGHT = 'b', 'Right side'
-
-class BookingStatus:
-    PENDING = 'PENDING'
-    ONGOING = 'ONGOING'
-    PAST = 'PAST'
-
-class CalendarType(models.TextChoices):
-    HOURLY = 'H', 'Hourly'
-    DAILY = 'D', 'Daily'

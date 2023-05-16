@@ -4,27 +4,26 @@ from podres.models import Service, Booking
 from datetime import date, datetime
 from podres.plugins.bookingcalendar import BookingCalendar
 from django.contrib.auth.mixins import LoginRequiredMixin
-from podres.enums import CalendarType
 
 class ServiceDetailView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     redirect_field_name = 'next'
 
 
-    def timetable_hour(self, service):
+    def timetable(self, service, today):
         start = service.service_type.hour_min
         end = service.service_type.hour_max
-        today = date.today()
+        block_size = service.service_type.block_size
 
-        bookings = Booking.objects.filter(service=service, date=today).order_by('hour')
+        bookings = Booking.objects.filter(service=service, date=today)
         bookings = filter(lambda b: start <= b.hour <= end, bookings)
 
-        result = [None] * (end - start + 1)
+        result = [None] * ((end - start + 1)//block_size)
 
         for booking in bookings:
-            result[booking.hour - start] = booking
+            result[(booking.hour - start)//block_size] = booking
 
-        return zip(result, range(start, end + 1))
+        return zip(result, range(start, end + 1, block_size))
 
 
     def get(self, request, pk):
@@ -49,14 +48,7 @@ class ServiceDetailView(LoginRequiredMixin, View):
         context = {
             'service': service,
             'calendar': calendar,
+            'bookings': self.timetable(service, today),
         }
-
-        if service.service_type.calendar_type == CalendarType.HOURLY:
-            context['bookings'] = self.timetable_hour(service)
-        if service.service_type.calendar_type == CalendarType.DAILY:
-            context['bookings'] = Booking.objects.filter(service=service, date=today)
-
-        for booking in context['bookings']:
-            print(booking)
 
         return render(request, 'service_detail.html', context)

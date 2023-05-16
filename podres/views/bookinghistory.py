@@ -11,11 +11,13 @@ class BookingHistoryView(LoginRequiredMixin, View):
 
     def get(self, request):
         today = datetime.now()
-        bookings = Booking.objects.filter(date__lte=today.date())
-        bookings = bookings.exclude(date=today.date(), hour__gte=today.hour)
-        bookings = bookings.order_by('date', 'hour')
+
+        past = Booking.objects.filter(date=today.date())
+        past = past | Booking.objects.filter(date__lt=today.date())
+        past = past.order_by('date', 'hour')
+        past = filter(lambda x: x.hour + x.hour + x.service.service_type.block_size < today.hour, past)
 
         context = {
-            'bookings': bookings
+            'bookings': past
         }
         return render(request, 'booking_history.html', context)

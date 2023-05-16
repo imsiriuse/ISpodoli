@@ -11,12 +11,17 @@ class BookingListView(LoginRequiredMixin, View):
 
     def get(self, request):
         today = datetime.now()
-        ongoing = Booking.objects.filter(date=today.date(), hour=today.hour).order_by('date', 'hour')
-        pending = Booking.objects.filter(date__gte=today.date())
-        pending = pending.exclude(date=today.date(), hour__lte=today.hour).order_by('date', 'hour')
+
+        pending = Booking.objects.filter(date=today.date(), hour__gt=today.hour)
+        pending = pending | Booking.objects.filter(date__gt=today.date())
+        pending = pending.order_by('date', 'hour')
+
+        ongoing = Booking.objects.filter(date=today.date())
+        ongoing = filter(lambda x: x.hour <= today.hour < x.hour + x.service.service_type.block_size, ongoing)
 
         context = {
+            'pending': pending,
             'ongoing': ongoing,
-            'pending': pending
         }
+
         return render(request, 'booking_list.html', context)

@@ -9,7 +9,6 @@
         <th scope="col"> Service </th>
         <th scope="col">Date</th>
         <th scope="col">Time</th>
-        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -19,8 +18,7 @@
           <td>{{ booking.booker}}</td>
           <td>{{ booking.service }}</td>
           <td>{{ booking.date }}</td>
-          <td>{{ booking.hour|hour_to_time }}</td>
-          <td>{{ booking|get_status }}</td>
+          <td>{{ booking.hour|hour_to_time:booking.service.service_type.block_size }}</td>
         </tr>
       {% empty %}
         <tr>

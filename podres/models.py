@@ -12,7 +12,7 @@ class ServiceType(models.Model):
     description = models.TextField()
     hour_min = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(23)])
     hour_max = models.IntegerField(default=23, validators=[MinValueValidator(0), MaxValueValidator(23)])
-    calendar_type = models.CharField(max_length=1, choices=CalendarType.choices, default=CalendarType.HOURLY)
+    block_size = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(24)])
 
     image = models.FileField(
         default=None,
