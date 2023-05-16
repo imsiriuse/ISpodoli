@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
+{% load booking_tags %}
+
+{% block title %}
+  User profile
+{% endblock %}
 
 {% block content %}
 <h1>User profile</h1>
 <p>{{ user }}</p>
 <h2>User settings</h2>
 <p><a href="{% url 'password_change' %}">Change password</a></p>
+
+{% include 'widgets/bookings.html' with bookings=bookings title="Ongoing bookings" %}
+
 {% endblock %}

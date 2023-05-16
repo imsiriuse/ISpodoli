@@ -1,17 +1,18 @@
 from django.urls import path
 from podres.views.views import *
-from .views.servicedetail import ServiceDetailView
-from .views.createbooking import CreateBookingView
-from .views.deletebooking import DeleteBookingView
-from .views.bookinglist import BookingListView
-from .views.bookinghistory import BookingHistoryView
+from podres.views.servicedetail import ServiceDetailView
+from podres.views.createbooking import CreateBookingView
+from podres.views.deletebooking import DeleteBookingView
+from podres.views.bookinglist import BookingListView
+from podres.views.bookinghistory import BookingHistoryView
+from podres.views.profile import ProfileView
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('', service_list, name='service_list'),
-    path('accounts/profile/', profile, name='profile'),
+    path('accounts/profile/', ProfileView.as_view(), name='profile'),
     path('about/', about, name='about'),
     path('bookings/', BookingListView.as_view(), name='booking_list'),
     path('service/<int:pk>/', ServiceDetailView.as_view(), name='service_detail'),

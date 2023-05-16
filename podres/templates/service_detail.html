@@ -9,7 +9,6 @@
 {% block content %}
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
-  <p>Description: {{ service.description }}</p>
   {{calendarhtml|safe}}
 
   <h2>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h2>
