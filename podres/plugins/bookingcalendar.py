@@ -4,9 +4,8 @@ from dateutil import relativedelta
 
 
 class BookingCalendar(HTMLCalendar):
-    def __init__(self, service_id, year, month, day):
+    def __init__(self, year, month, day):
         super(BookingCalendar, self).__init__()
-        self.service_id = service_id
         self.year = year
         self.month = month
         self.day = day
@@ -30,7 +29,7 @@ class BookingCalendar(HTMLCalendar):
         prev = datetime.date(self.year, self.month, self.day) - relativedelta.relativedelta(months=1)
 
         a('<div style="display: inline-block">')
-        a('<a href="?date=%d-%d-%d">Previous</a>' % (prev.day, prev.month, prev.year))
+        a('<a href="?date=%d-%d-%d"><</a>' % (prev.day, prev.month, prev.year))
         a('</div>')
 
         # add calendar
@@ -54,7 +53,7 @@ class BookingCalendar(HTMLCalendar):
 
         after = datetime.date(self.year, self.month, self.day) + relativedelta.relativedelta(months=1)
 
-        a('<a href="?date=%d-%d-%d">Next</a>' % (after.day, after.month, after.year))
+        a('<a href="?date=%d-%d-%d">></a>' % (after.day, after.month, after.year))
         a('</div>')
 
         a('</div>')

@@ -27,3 +27,7 @@ class BookingStatus:
     PENDING = 'PENDING'
     ONGOING = 'ONGOING'
     PAST = 'PAST'
+
+class CalendarType(models.TextChoices):
+    HOURLY = 'H', 'Hourly'
+    DAILY = 'D', 'Daily'

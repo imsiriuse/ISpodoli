@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% load booking_tags %}
-
 {% block title %}
   {{ service.service_type.name }} - {{ service.name }}
 {% endblock %}
@@ -9,34 +7,12 @@
 {% block content %}
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
-  {{calendarhtml|safe}}
+  {{calendar.gethtml|safe}}
+  {% if service.service_type.calendar_type == 'H' %}
+    {% include 'widgets/timetable_hourly.html' with bookings=bookings calendar=calendar service=service %}
+  {% else %}
+    {% include 'widgets/timetable_daily.html' with bookings=bookings calendar=calendar service=service %}
+  {% endif %}
 
-  <h2>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h2>
-    <table class="table table-striped">
-      <tr>
-        <th scope="col">Time</th>
-        <th scope="col">Booking</th>
-      </tr>
-      {% for booking, hour in bookings %}
-        <tr>
-          <td>{{ hour|hour_to_time }}</td>
-          {% if booking != None %}
-            <td>
-              <a href="{% url 'delete_booking' booking.id %}" class="btn btn-sm btn-primary">
-                {{booking.booker.user.first_name}} {{booking.booker.user.last_name}} - {{booking.booker.room}}
-              </a>
-            </td>
-          {% else %}
-            <td>
-              <a href="{% url 'create_booking' serviceid=service.id year=calendar.year month=calendar.month day=calendar.day hour=hour %}">
-                Book
-              </a>
-            </td>
-          {% endif %}
-        </tr>
-      {% empty %}
-        <p>No bookings available at this time.</p>
-      {% endfor %}
-    </table>
 </center>
 {% endblock %}
