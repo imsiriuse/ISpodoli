@@ -2,6 +2,10 @@ from django import template
 
 register = template.Library()
 
+@register.filter(name='date_to_string')
+def date_to_string(value):
+    return value.strftime("%d-%m-%Y")
+
 def hour_to_time(hour):
     if hour < 10:
         return f'0{hour}:00'
