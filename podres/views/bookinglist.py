@@ -5,7 +5,7 @@ from podres.models import Booking
 from datetime import datetime
 
 class BookingListView(LoginRequiredMixin, View):
-    template_name = 'create_booking.html'
+    template_name = 'booking_list.html'
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 

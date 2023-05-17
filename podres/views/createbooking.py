@@ -6,7 +6,6 @@ from datetime import date
 
 
 class CreateBookingView(LoginRequiredMixin, View):
-    template_name = 'create_booking.html'
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 

@@ -1,11 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import redirect
-from podres.models import Booking, Booker
+from podres.models import Booking
 
 
 class DeleteBookingView(LoginRequiredMixin, View):
-    template_name = 'create_booking.html'
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 

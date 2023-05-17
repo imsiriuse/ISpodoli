@@ -5,7 +5,7 @@ from podres.models import Booking, Booker
 
 
 class ProfileView(LoginRequiredMixin, View):
-    template_name = 'create_booking.html'
+    template_name = 'profile.html'
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 

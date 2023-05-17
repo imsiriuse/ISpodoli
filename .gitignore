@@ -4,6 +4,6 @@ venv/
 podres/migrations/
 /static/
 media/
-img/
+dev_images/
 fixtures/
 .gitignore
