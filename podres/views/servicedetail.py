@@ -4,6 +4,8 @@ from podres.models import Service, Booking
 from datetime import date, datetime
 from podres.plugins.bookingcalendar import BookingCalendar
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+
 
 class ServiceDetailView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
