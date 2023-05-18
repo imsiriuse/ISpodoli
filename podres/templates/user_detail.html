@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load booking_tags %}
+
+{% block title %}
+  User profile
+{% endblock %}
+
+{% block content %}
+<h1>User profile</h1>
+{% if boooker.user.is_staff %}
+  <p><b>STAFF</b></p>
+{% endif %}
+
+<p><b>Username:</b> {{ booker.user }}</p>
+<p><b>First name:</b> {{ booker.user.first_name }}</p>
+<p><b>Last name:</b> {{ booker.user.last_name }}</p>
+<p><b>Room:</b> {{ booker.room }}</p>
+
+<h2>Actions</h2>
+
+{% include 'widgets/bookings.html' with bookings=bookings title="Ongoing bookings" %}
+
+{% endblock %}

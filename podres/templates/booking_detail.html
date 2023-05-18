@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Booking detail
+{% endblock %}
+
+{% load booking_tags %}
+
+{% block content %}
+  <h1>Booking detail</h1>
+    <p><b>Room:</b> {{ booking.booker.room }}</p>
+    <p><b>User:</b> {{ booking.booker }}</p>
+    <p><b>Service:</b> {{ booking.service }}</p>
+    <p><b>Date:</b> {{ booking.date }}</p>
+    <p><b>Time:</b> {{ booking.hour|hour_to_time:booking.service.service_type.block_size }}</p>
+  <h2>Actions</h2>
+  <ul>
+    <li><a href="{% url 'delete_booking' booking.id %}" >Delete</a></li>
+  </ul>
+{% endblock %}

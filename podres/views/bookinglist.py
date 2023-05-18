@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from django.shortcuts import render
-from podres.models import Booking, Service
+from django.shortcuts import render, redirect, reverse
+from podres.models import Booking
 from datetime import datetime
-from django.conf import settings
+from django.contrib import messages
 
 class BookingListView(LoginRequiredMixin, View):
     template_name = 'booking_list.html'
@@ -12,8 +12,8 @@ class BookingListView(LoginRequiredMixin, View):
 
     def get(self, request):
         if not request.user.is_staff:
-            services = Service.objects.filter(is_available=True)
-            return render(request, 'service_list.html', {'services': services, 'media_url': settings.MEDIA_URL})
+            messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
+            return redirect(reverse("service_list"))
 
         today = datetime.now()
 

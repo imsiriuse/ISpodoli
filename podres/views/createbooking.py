@@ -32,7 +32,7 @@ class CreateBookingView(LoginRequiredMixin, View):
         service = Service.objects.get(id=serviceid)
 
         validation = self.validate(service, day, month, year, hour)
-        if validation is not None:
+        if validation:
             messages.add_message(request, messages.INFO, validation)
             return redirect(reverse_redirect)
 
