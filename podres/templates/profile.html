@@ -12,8 +12,7 @@
 {% endif %}
 
 <p><b>Username:</b> {{ user }}</p>
-<p><b>First name:</b> {{ user.first_name }}</p>
-<p><b>Last name:</b> {{ user.last_name }}</p>
+<p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
 <p><b>Room:</b> {{ user.booker.room }}</p>
 
 <h2>User settings</h2>

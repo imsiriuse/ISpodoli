@@ -13,6 +13,8 @@ class ServiceType(models.Model):
     hour_min = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(23)])
     hour_max = models.IntegerField(default=23, validators=[MinValueValidator(0), MaxValueValidator(23)])
     block_size = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(24)])
+    restriction_type = models.CharField(max_length=1, choices=RestrictionType.choices, default=RestrictionType.NO)
+    restriction_value = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     image = models.FileField(
         default=None,
@@ -27,7 +29,6 @@ class ServiceType(models.Model):
     def clean(self):
         if self.hour_min > self.hour_max:
             raise ValidationError('Hour min must be less than hour max')
-
 
 class Service(models.Model):
     name = models.CharField(max_length=50)
@@ -45,7 +46,7 @@ class Room(models.Model):
     room = models.CharField(max_length=4, default="")
 
     def __str__(self):
-        return f"{self.block} {self.room} {self.side}"
+        return f"{self.block}{self.room}{self.side}"
 
 
 class Booker(models.Model):

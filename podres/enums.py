@@ -22,3 +22,9 @@ class Side(models.TextChoices):
     NO = 'n', 'No side'
     LEFT = 'a', 'Left side'
     RIGHT = 'b', 'Right side'
+
+
+class RestrictionType(models.TextChoices):
+    NO = 'n', 'No restriction'
+    DAY = 'd', 'Day restriction'
+    WEEK = 'w', 'Week restriction'

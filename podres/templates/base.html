@@ -46,6 +46,13 @@
   </nav>
     <div class="container mt-4">
       {% block content %}
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       {% endblock %}
     </div>
   </body>
