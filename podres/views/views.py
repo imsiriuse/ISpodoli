@@ -8,5 +8,5 @@ def service_list(request):
     return render(request, 'service_list.html', {'services': services, 'media_url': settings.MEDIA_URL})
 
 def about(request):
-    service_types = ServiceType.objects.all()
+    service_types = ServiceType.objects.filter(is_available=True)
     return render(request, 'about.html', {'service_types': service_types})

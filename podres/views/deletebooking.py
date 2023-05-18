@@ -11,9 +11,7 @@ class DeleteBookingView(LoginRequiredMixin, View):
     def get(self, request, pk):
         booking = Booking.objects.get(id=pk)
 
-        if booking.booker.user != request.user:
-            return redirect(request.META.get('HTTP_REFERER'))
-
-        booking.delete()
+        if booking.booker.user == request.user or request.user.is_staff:
+            booking.delete()
 
         return redirect(request.META.get('HTTP_REFERER'))

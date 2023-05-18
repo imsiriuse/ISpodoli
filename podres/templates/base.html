@@ -30,12 +30,9 @@
         {% endif %}
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'booking_history' %}">Booking history</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'booking_list' %}">Ongoing bookings</a>
-        </li>
+        {% if user.is_staff %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'booking_list' %}">Bookings</a></li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'service_list' %}">Services</a>
         </li>

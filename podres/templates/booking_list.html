@@ -9,4 +9,5 @@
 {% block content %}
 {% include 'widgets/bookings.html' with bookings=ongoing title="Ongoing bookings" %}
 {% include 'widgets/bookings.html' with bookings=pending title="Pending bookings" %}
+{% include 'widgets/bookings.html' with bookings=bookings title="Booking history" %}
 {% endblock %}

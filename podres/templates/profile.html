@@ -7,7 +7,15 @@
 
 {% block content %}
 <h1>User profile</h1>
-<p>{{ user }}</p>
+{% if user.is_staff %}
+  <p><b>STAFF</b></p>
+{% endif %}
+
+<p><b>Username:</b> {{ user }}</p>
+<p><b>First name:</b> {{ user.first_name }}</p>
+<p><b>Last name:</b> {{ user.last_name }}</p>
+<p><b>Room:</b> {{ user.booker.room }}</p>
+
 <h2>User settings</h2>
 <p><a href="{% url 'password_change' %}">Change password</a></p>
 
