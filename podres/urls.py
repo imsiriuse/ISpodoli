@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/profile/', ProfileView.as_view(), name='profile'),
     path('about/', about, name='about'),
     path('bookings/', BookingListView.as_view(), name='booking_list'),
+    path('users/', user_list, name='user_list'),
     path('service/<int:pk>/', ServiceDetailView.as_view(), name='service_detail'),
     path('booking/<int:pk>/', booking_detail, name='booking_detail'),
     path('user/<int:pk>/', user_detail, name='user_detail'),

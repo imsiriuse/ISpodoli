@@ -35,3 +35,12 @@ def user_detail(request, pk):
     bookings = Booking.objects.filter(booker=booker)
 
     return render(request, 'user_detail.html', {'booker': booker, 'bookings': bookings})
+
+@login_required
+def user_list(request):
+    if not request.user.is_staff:
+        messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
+        return redirect(reverse("service_list"))
+
+    bookers = Booker.objects.filter()
+    return render(request, 'user_list.html', {'bookers': bookers})
