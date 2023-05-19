@@ -4,6 +4,7 @@ from podres.views.servicedetail import ServiceDetailView
 from podres.views.createbooking import CreateBookingView
 from podres.views.deletebooking import DeleteBookingView
 from podres.views.bookinglist import BookingListView
+from podres.views.bans_list import BansListView
 from podres.views.profile import ProfileView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,6 +16,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('bookings/', BookingListView.as_view(), name='booking_list'),
     path('users/', user_list, name='user_list'),
+    path('bans/', BansListView.as_view(), name='bans_list'),
     path('service/<int:pk>/', ServiceDetailView.as_view(), name='service_detail'),
     path('booking/<int:pk>/', booking_detail, name='booking_detail'),
     path('user/<int:pk>/', user_detail, name='user_detail'),

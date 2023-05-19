@@ -1,6 +1,11 @@
 from django import template
+from datetime import date, timedelta
 
 register = template.Library()
+
+@register.filter(name='remaining_time')
+def remaining_time(value):
+    return (timedelta(days=value.duration) - (date.today() - value.start_date)).days
 
 @register.filter(name='date_to_string')
 def date_to_string(value):

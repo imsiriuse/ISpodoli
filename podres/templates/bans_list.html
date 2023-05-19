@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load booking_tags %}
+{% block title %}Bans{% endblock %}
+{% block content %}
+  <h1>Blacklist</h1>
+<center>
+  {% for ban in bans %}
+  <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Service</th>
+        <th>Reason</th>
+        <th>Start Date</th>
+        <th>Remaining</th>
+      </tr>
+      <tr>
+        <td>{{ ban.booker.user.first_name }} {{ ban.booker.user.last_name }}</td>
+        <td>{{ ban.service_type }}</td>
+        <td>{{ ban.reason }}</td>
+        <td>{{ ban.start_date }}</td>
+        <td>{{ ban|remaining_time }} days</td>
+      </tr>
+  </table>
+    {% empty %}
+    <p>No bans at this time.</p>
+  {% endfor %}
+</center>
+{% endblock %}

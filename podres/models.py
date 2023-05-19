@@ -39,6 +39,7 @@ class Service(models.Model):
         return f"{self.service_type.name} {self.name}"
 
 
+
 class Room(models.Model):
     block = models.CharField(max_length=1, choices=Building.choices, default=Building.A)
     floor = models.CharField(max_length=1, choices=Floor.choices, default=Floor.ZERO)
@@ -70,3 +71,13 @@ class Booking(models.Model):
     def __str__(self):
         if self.service:
             return f"Booking for {self.service.name} from {self.date}"
+
+class Ban(models.Model):
+    start_date = models.DateField()
+    duration = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(365)])
+    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE)
+    booker = models.ForeignKey(Booker, on_delete=models.CASCADE)
+    reason = models.TextField(max_length=100)
+
+    def __str__(self):
+        return f"{self.booker} banned from {self.service_type.name} from {self.start_date} for {self.duration} days"

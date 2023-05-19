@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ServiceType, Service, Booking, Room, Booker
+from podres.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
@@ -19,3 +19,4 @@ admin.site.register(ServiceType)
 admin.site.register(Service)
 admin.site.register(Booking)
 admin.site.register(Room)
+admin.site.register(Ban)
