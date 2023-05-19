@@ -1,5 +1,7 @@
 from django.db import models
 
+MAX_DAYS_AHEAD = 31
+
 class Building(models.TextChoices):
     A = 'A', 'Building A'
     B = 'B', 'Building B'

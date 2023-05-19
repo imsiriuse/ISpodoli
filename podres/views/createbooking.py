@@ -1,16 +1,18 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from django.shortcuts import redirect, reverse, render
+from django.shortcuts import redirect, reverse
 from podres.models import Service, Booking, Booker
 from datetime import datetime, date, timedelta
 from django.contrib import messages
 from podres.enums import RestrictionType
+from podres.enums import MAX_DAYS_AHEAD
 
 class CreateBookingView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
-    def restriction_check(self, service, booker, day, month, year):
+    @staticmethod
+    def restriction_check(service, booker, day, month, year):
         if booker.user.is_staff:
             return None
 
@@ -36,16 +38,20 @@ class CreateBookingView(LoginRequiredMixin, View):
 
         return None
 
-    def validate(self, service, day, month, year, hour):
+    @staticmethod
+    def validate(service, day, month, year, hour):
         today = datetime.now()
         if hour < service.service_type.hour_min or hour > service.service_type.hour_max:
-            return "Hour out of range"
+            return "Hour out of range, from " + str(service.service_type.hour_min) + " to " + str(service.service_type.hour_max)
 
         if date(year, month, day) < today.date():
             return "Date in the past"
 
         if date(year, month, day) == today.date() and hour < today.hour:
             return "Hour in the past"
+
+        if date(year, month, day) > today.date() + timedelta(days=MAX_DAYS_AHEAD):
+            return "Date too far in the future, max " + str(MAX_DAYS_AHEAD) + " days ahead"
 
         for booking in Booking.objects.filter(service=service, date=date(year, month, day)):
             if booking.hour <= hour < booking.hour + booking.service.service_type.block_size:
