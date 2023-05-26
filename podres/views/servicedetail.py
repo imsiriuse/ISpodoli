@@ -46,6 +46,8 @@ class ServiceDetailView(LoginRequiredMixin, View):
 
         return zip(result, range(start, end + 1, block_size))
 
+    def post(self, request, pk):
+        pass
 
     def get(self, request, pk):
         service = get_object_or_404(Service, id=pk)

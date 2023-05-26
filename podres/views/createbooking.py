@@ -12,6 +12,16 @@ class CreateBookingView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     @staticmethod
+    def ban_check(booker):
+        bans = Ban.objects.filter(booker=booker, start_date__lte=date.today()).order_by('-start_date')
+        bans = filter(lambda x: x.start_date + timedelta(x.duration) > date.today(), bans)
+
+        if ban_check:
+            return "User is banned until " + str(ban_check.start_date + timedelta(ban_check.duration))
+
+        return None
+
+    @staticmethod
     def restriction_check(service, booker, day, month, year):
         if booker.user.is_staff:
             return None
@@ -74,6 +84,11 @@ class CreateBookingView(LoginRequiredMixin, View):
         restriction_check = self.restriction_check(service, booker, day, month, year)
         if restriction_check:
             messages.add_message(request, messages.INFO, restriction_check)
+            return redirect(reverse_redirect)
+
+        ban_check = ban_check(booker)
+        if ban_check:
+            messages.add_message(request, messages.INFO, ban_check)
             return redirect(reverse_redirect)
 
         booking = Booking(
