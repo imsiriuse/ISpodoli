@@ -19,5 +19,6 @@
 <p><a href="{% url 'password_change' %}">Change password</a></p>
 
 {% include 'widgets/bookings.html' with bookings=bookings title="Ongoing bookings" %}
+{% include 'widgets/bans.html' with bans=bans title="Ongoing bans" %}
 
 {% endblock %}
