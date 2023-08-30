@@ -10,7 +10,8 @@ class ProfileView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
-    def get(self, request):
+    @staticmethod
+    def get(request):
         booker = Booker.objects.get(user=request.user)
         bookings = Booking.objects.filter(booker=booker).order_by('date', 'hour')
         bans = Ban.objects.filter(booker=booker, start_date__lte=date.today()).order_by('-start_date')
