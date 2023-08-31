@@ -17,7 +17,7 @@ jobs:
       PODRES_SECRET_KEY: ${{ secrets.PODRES_SECRET_KEY }}
       PODRES_DB_NAME: ${{ secrets.PODRES_DB_NAME }}
       PODRES_DB_USER: ${{ secrets.PODRES_DB_USER }}
-      PODRES_DB_PASSWORD: ${{ secrets.PODRES_DB_PASSWD }}
+      PODRES_DB_PASSWD: ${{ secrets.PODRES_DB_PASSWD }}
       PODRES_DB_HOST: ${{ secrets.PODRES_DB_HOST }}
       PODRES_DB_PORT: ${{ secrets.PODRES_DB_PORT }}
       PODRES_HOST1: ${{ secrets.PODRES_HOST1 }}
