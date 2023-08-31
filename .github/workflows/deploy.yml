@@ -8,12 +8,35 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
         python-version: [3.11.1]
+    services:
+      postgres:
+        image: postgres
+
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      PODRES_SECRET_KEY: ${{ secrets.PODRES_SECRET_KEY }}
+      PODRES_DB_NAME: ${{ secrets.PODRES_DB_NAME }}
+      PODRES_DB_USER: ${{ secrets.PODRES_DB_USER }}
+      PODRES_DB_PASSWORD: ${{ secrets.PODRES_DB_PASSWD }}
+      PODRES_DB_HOST: ${{ secrets.PODRES_DB_HOST }}
+      PODRES_DB_PORT: ${{ secrets.PODRES_DB_PORT }}
+      PODRES_HOST1: ${{ secrets.PODRES_HOST1 }}
 
     steps:
     - uses: actions/checkout@v3
@@ -25,21 +48,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Set environment variables and test
-      env:
-        PODRES_SECRET_KEY: ${{ secrets.PODRES_SECRET_KEY }}
-        PODRES_DB_NAME: ${{ secrets.PODRES_DB_NAME }}
-        PODRES_DB_USER: ${{ secrets.PODRES_DB_USER }}
-        PODRES_DB_PASSWORD: ${{ secrets.PODRES_DB_PASSWD }}
-        PODRES_DB_HOST: ${{ secrets.PODRES_DB_HOST }}
-        PODRES_DB_PORT: ${{ secrets.PODRES_DB_PORT }}
-        PODRES_HOST1: ${{ secrets.PODRES_HOST1 }}
+    - name: Run automated tests
       run: |
         python manage.py test
     - name: Create static
       run: |
         python manage.py collectstatic --noinput
     - name: Migrate database
+      env:
+        DBURL: "postgres://postgres:postgres@localhost:5432/postgres"
       run: |
         python manage.py makemigrations
         python manage.py migrate
