@@ -1,9 +1,5 @@
 .idea/
 venv/
-.env
 podres/migrations/
-/static/
-media/
-dev_images/
-fixtures/
-.gitignore
+static/
+.env
