@@ -1,19 +1,16 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.environ.get("PODRES_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", os.environ.get("PODRES_HOST1")]
 
 # Application definition
 INSTALLED_APPS = [
@@ -62,12 +59,12 @@ WSGI_APPLICATION = 'reservations.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'ENGINE': os.environ.get('PODRES_DB_ENGINE'),
+        'NAME': os.environ.get('PODRES_DB_NAME'),
+        'USER': os.environ.get('PODRES_DB_USER'),
+        'PASSWORD': os.environ.get('PODRES_DB_PASSWD'),
+        'HOST': os.environ.get('PODRES_DB_HOST'),
+        'PORT': os.environ.get('PODRES_DB_PORT'),
     }
 }
 

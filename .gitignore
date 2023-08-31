@@ -2,4 +2,3 @@
 venv/
 podres/migrations/
 static/
-.env
