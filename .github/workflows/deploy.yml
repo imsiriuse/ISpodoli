@@ -35,6 +35,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run automated tests
       run: |
+        python -c "from django.conf import settings; print(settings.PODRES_DB_USER)"
         python manage.py test
     - name: Create static
       run: |
