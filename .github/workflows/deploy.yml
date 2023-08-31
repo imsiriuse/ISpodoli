@@ -25,7 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Set environment variables
+    - name: Set environment variables and test
       env:
         PODRES_SECRET_KEY: ${{ secrets.PODRES_SECRET_KEY }}
         PODRES_DB_NAME: ${{ secrets.PODRES_DB_NAME }}
@@ -35,8 +35,6 @@ jobs:
         PODRES_DB_PORT: ${{ secrets.PODRES_DB_PORT }}
         PODRES_HOST1: ${{ secrets.PODRES_HOST1 }}
       run: |
-        python -c "from django.conf import settings; print(settings.DATABASES)"
-        python -c "from django.conf import settings; print(settings.TEST)"
         python manage.py test
     - name: Create static
       run: |
