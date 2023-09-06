@@ -12,7 +12,7 @@ class CreateBookingView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     @staticmethod
-    def ban_check(booker):
+    def ban_check(request, booker):
         bans = Ban.objects.filter(booker=booker, start_date__lte=date.today()).order_by('-start_date')
         bans = filter(lambda x: x.start_date + timedelta(x.duration) > date.today(), bans)
 
@@ -24,7 +24,7 @@ class CreateBookingView(LoginRequiredMixin, View):
         return False
 
     @staticmethod
-    def restriction_check(service, booker, day, month, year):
+    def restriction_check(request, service, booker, day, month, year):
         if booker.user.is_staff:
             return False
 
@@ -52,7 +52,7 @@ class CreateBookingView(LoginRequiredMixin, View):
         return False
 
     @staticmethod
-    def validate(service, day, month, year, hour):
+    def validate(request, service, day, month, year, hour):
         today = datetime.now()
         if hour < service.service_type.hour_min or hour > service.service_type.hour_max:
             messages.add_message(request, messages.INFO, "Hour out of range, from " + str(service.service_type.hour_min) + " to " + str(service.service_type.hour_max))
@@ -83,13 +83,13 @@ class CreateBookingView(LoginRequiredMixin, View):
         service = Service.objects.get(id=serviceid)
         booker = Booker.objects.get(user=request.user)
 
-        if self.validate(service, day, month, year, hour):
+        if self.validate(request, service, day, month, year, hour):
             return redirect(reverse_redirect)
 
-        if self.restriction_check(service, booker, day, month, year):
+        if self.restriction_check(request, service, booker, day, month, year):
             return redirect(reverse_redirect)
 
-        if self.ban_check(booker):
+        if self.ban_check(request, booker):
             return redirect(reverse_redirect)
 
         booking = Booking(
