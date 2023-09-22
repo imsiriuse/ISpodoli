@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% load booking_tags %}
+{% load i18n %}
 
 {% block title %}
-  User profile
+  {% trans 'User profile' %}
 {% endblock %}
 
 {% block content %}
-<h1>User profile</h1>
-{% if boooker.user.is_staff %}
-  <p><b>STAFF</b></p>
-{% endif %}
+  <h1>{% trans 'User profile' %}</h1>
+  {% if boooker.user.is_staff %}
+    <p><b>{% trans 'STAFF' %}</b></p>
+  {% endif %}
 
-<p><b>Username:</b> {{ booker.user }}</p>
-<p><b>Name:</b> {{ booker.user.first_name }} {{ booker.user.last_name }}</p>
-<p><b>Room:</b> {{ booker.room }}</p>
+<p><b>{% trans 'Username' %}:</b> {{ booker.user }}</p>
+<p><b>{% trans 'Name' %}:</b> {{ booker.user.first_name }} {{ booker.user.last_name }}</p>
+<p><b>{% trans 'Room' %}:</b> {{ booker.room }}</p>
 
-<h2>Actions</h2>
+<h2>{% trans 'Actions' %}</h2>
 
-{% include 'widgets/bookings.html' with bookings=bookings title="Ongoing bookings" %}
-
+{% include 'widgets/bookings.html' with bookings=ongoing title="Ongoing bookings" %}
+{% include 'widgets/bookings.html' with bookings=pending title="Pending bookings" %}
+{% include 'widgets/bookings.html' with bookings=past title="Past bookings" %}
 {% endblock %}

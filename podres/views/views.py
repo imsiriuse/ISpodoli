@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.utils.translation import activate, get_language
 from urllib.parse import urlparse
+from datetime import datetime
 
 def service_list(request):
     services = Service.objects.filter(is_available=True)
@@ -27,31 +28,13 @@ def booking_detail(request, pk):
     booking = get_object_or_404(Booking, id=pk)
     return render(request, 'booking_detail.html', {'booking': booking})
 
-@login_required
-def user_detail(request, pk):
-    if not request.user.is_staff:
-        messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
-        return redirect(reverse("service_list"))
 
-    booker = get_object_or_404(Booker, id=pk)
-    bookings = Booking.objects.filter(booker=booker)
 
-    return render(request, 'user_detail.html', {'booker': booker, 'bookings': bookings})
-
-@login_required
-def user_list(request):
-    if not request.user.is_staff:
-        messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
-        return redirect(reverse("service_list"))
-
-    bookers = Booker.objects.filter()
-    return render(request, 'user_list.html', {'bookers': bookers})
 
 def change_language(request, lang_code):
     reverse_redirect = request.META.get("HTTP_REFERER", None) or "/"
     reverse_redirect = "/" + "/".join(urlparse(reverse_redirect)[2].split("/")[2:])
     reverse_redirect = resolve(reverse_redirect).url_name
-    print(reverse_redirect)
 
     activate(lang_code)
     response = redirect(reverse_redirect)

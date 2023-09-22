@@ -6,12 +6,12 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Room</th>
-        <th scope="col">User</th>
-        <th scope="col">Service</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">View</th>
+        <th scope="col">{% trans 'Room' %}</th>
+        <th scope="col">{% trans 'User' %}</th>
+        <th scope="col">{% trans 'Service' %}</th>
+        <th scope="col">{% trans 'Date' %}</th>
+        <th scope="col">{% trans 'Time' %}</th>
+        <th scope="col">{% trans 'View' %}</th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,9 @@
 
       {% empty %}
         <tr>
-          <td colspan="6">No bookings found.</td>
+          <td colspan="6">
+            {% blocktrans %}No bookings found.{% endblocktrans %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>
