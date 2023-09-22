@@ -21,15 +21,17 @@ class UserDetailView(LoginRequiredMixin, View):
 
         today = datetime.now()
 
+        print(len(Booking.objects.filter(booker=booker)))
+
         pending = Booking.objects.filter(date=today.date(), hour__gt=today.hour, booker=booker)
-        pending = pending | Booking.objects.filter(date__gt=today.date())
+        pending = pending | Booking.objects.filter(date__gt=today.date(), booker=booker)
         pending = pending.order_by('date', 'hour')
 
         ongoing = Booking.objects.filter(date=today.date(), booker=booker)
         ongoing = filter(lambda x: x.hour <= today.hour < x.hour + x.service.service_type.block_size, ongoing)
 
         past = Booking.objects.filter(date=today.date(), booker=booker).exclude(hour__gt=today.hour)
-        past = past | Booking.objects.filter(date__lt=today.date())
+        past = past | Booking.objects.filter(date__lt=today.date(), booker=booker)
         past = past.order_by('date', 'hour')
 
         context = {

@@ -16,9 +16,10 @@
 <p><b>{% trans 'Name' %}:</b> {{ booker.user.first_name }} {{ booker.user.last_name }}</p>
 <p><b>{% trans 'Room' %}:</b> {{ booker.room }}</p>
 
-<h2>{% trans 'Actions' %}</h2>
-
 {% include 'widgets/bookings.html' with bookings=ongoing title="Ongoing bookings" %}
 {% include 'widgets/bookings.html' with bookings=pending title="Pending bookings" %}
 {% include 'widgets/bookings.html' with bookings=past title="Past bookings" %}
+
+{% include 'widgets/bans.html' with bans=bans title="Bans" %}
+
 {% endblock %}
