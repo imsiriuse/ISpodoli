@@ -4,9 +4,11 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import redirect, reverse
+from django.urls import resolve
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.utils.translation import activate, get_language
+from urllib.parse import urlparse
 
 def service_list(request):
     services = Service.objects.filter(is_available=True)
@@ -46,11 +48,14 @@ def user_list(request):
     return render(request, 'user_list.html', {'bookers': bookers})
 
 def change_language(request, lang_code):
+    reverse_redirect = request.META.get("HTTP_REFERER", None) or "/"
+    reverse_redirect = "/" + "/".join(urlparse(reverse_redirect)[2].split("/")[2:])
+    reverse_redirect = resolve(reverse_redirect).url_name
+    print(reverse_redirect)
+
     activate(lang_code)
-
-    response = redirect("service_list")
+    response = redirect(reverse_redirect)
     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
-
     return response
 
 def home(request):
