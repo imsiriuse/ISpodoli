@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, reverse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-
+from django.utils.translation import activate, get_language
 
 def service_list(request):
     services = Service.objects.filter(is_available=True)
@@ -44,3 +44,15 @@ def user_list(request):
 
     bookers = Booker.objects.filter()
     return render(request, 'user_list.html', {'bookers': bookers})
+
+def change_language(request, lang_code):
+    activate(lang_code)
+
+    response = redirect("service_list")
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+
+    return response
+
+def home(request):
+    return redirect(reverse("service_list"))
+

@@ -11,7 +11,7 @@
     <p><b>Room:</b> {{ booking.booker.room }}</p>
     <p><b>User:</b> {{ booking.booker }}</p>
     <p><b>Service:</b> {{ booking.service }}</p>
-    <p><b>Date:</b> {{ booking.date }}</p>
+    <p><b>Date:</b> {{ booking.date|date:"SHORT_DATE_FORMAT" }}</p>
     <p><b>Time:</b> {{ booking.hour|hour_to_time:booking.service.service_type.block_size }}</p>
   <h2>Actions</h2>
   <ul>

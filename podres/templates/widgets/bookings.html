@@ -1,4 +1,6 @@
 {% load booking_tags %}
+{% load i18n %}
+{% load l10n %}
 
 <h1>{{title}}</h1>
   <table class="table table-striped">
@@ -20,7 +22,7 @@
           <td><a href="{% url 'service_detail' booking.service.id %}?date={{ booking.date|date_to_string }}">
             {{ booking.service }}
           </a></td>
-          <td>{{ booking.date }}</td>
+            <td>{{ booking.date|date:"SHORT_DATE_FORMAT" }}</td>
           <td>{{ booking.hour|hour_to_time:booking.service.service_type.block_size }}</td>
           <td> <a href="{% url 'booking_detail' pk=booking.id %}" class="btn btn-sm btn-primary"> DETAIL </a></td>
         </tr>

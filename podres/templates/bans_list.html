@@ -18,7 +18,7 @@
         <td>{{ ban.booker.user.first_name }} {{ ban.booker.user.last_name }}</td>
         <td>{{ ban.service_type }}</td>
         <td>{{ ban.reason }}</td>
-        <td>{{ ban.start_date }}</td>
+        <td>{{ ban.start_date|date:"SHORT_DATE_FORMAT" }}</td>
         <td>{{ ban|remaining_time }} days</td>
       </tr>
   </table>

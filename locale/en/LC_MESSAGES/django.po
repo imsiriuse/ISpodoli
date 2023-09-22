@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 14:34+0200\n"
+"POT-Creation-Date: 2023-09-21 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,16 +18,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\reservations\settings.py:111
-msgid "English"
+#: .\podres\templates\base.html:32
+msgid "Sign out"
+msgstr ""
+
+#: .\podres\templates\base.html:36
+msgid "Sign in"
+msgstr ""
+
+#: .\podres\templates\base.html:43
+msgid "Language"
+msgstr ""
+
+#: .\podres\templates\base.html:58
+msgid "Bookings"
+msgstr ""
+
+#: .\podres\templates\base.html:59
+msgid "Users"
+msgstr ""
+
+#: .\podres\templates\base.html:62
+msgid "Bans"
+msgstr ""
+
+#: .\podres\templates\base.html:65
+msgid "Services"
+msgstr ""
+
+#: .\podres\templates\base.html:68
+msgid "About"
 msgstr ""
 
 #: .\reservations\settings.py:112
-msgid "Czech"
+msgid "English"
 msgstr ""
 
 #: .\reservations\settings.py:113
-msgid "French"
+msgid "Czech"
+msgstr ""
+
+#: .\reservations\settings.py:114
+msgid "Russian"
 msgstr ""
 
 #: .\venv\Lib\site-packages\bootstrap4\components.py:17

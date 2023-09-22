@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 14:34+0200\n"
+"POT-Creation-Date: 2023-09-21 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,17 +20,49 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\reservations\settings.py:111
-msgid "English"
-msgstr ""
+#: .\podres\templates\base.html:32
+msgid "Sign out"
+msgstr "выход"
+
+#: .\podres\templates\base.html:36
+msgid "Sign in"
+msgstr "войти"
+
+#: .\podres\templates\base.html:43
+msgid "Language"
+msgstr "язык"
+
+#: .\podres\templates\base.html:58
+msgid "Bookings"
+msgstr "заказы"
+
+#: .\podres\templates\base.html:59
+msgid "Users"
+msgstr "пользователи"
+
+#: .\podres\templates\base.html:62
+msgid "Bans"
+msgstr "запреты"
+
+#: .\podres\templates\base.html:65
+msgid "Services"
+msgstr "услуги"
+
+#: .\podres\templates\base.html:68
+msgid "About"
+msgstr "информация"
 
 #: .\reservations\settings.py:112
-msgid "Czech"
-msgstr ""
+msgid "English"
+msgstr "английский"
 
 #: .\reservations\settings.py:113
-msgid "French"
-msgstr ""
+msgid "Czech"
+msgstr "Чешский"
+
+#: .\reservations\settings.py:114
+msgid "Russian"
+msgstr "русский"
 
 #: .\venv\Lib\site-packages\bootstrap4\components.py:17
 #: .\venv\Lib\site-packages\bootstrap4\templates\bootstrap4\form_errors.html:3
@@ -831,7 +863,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:33
 msgid "September"
-msgstr ""
+msgstr "Сентябрь"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:34
 msgid "October"

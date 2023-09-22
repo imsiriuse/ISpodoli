@@ -16,7 +16,7 @@
                   {{booking.booker.user.first_name}} {{booking.booker.user.last_name}} - {{booking.booker.room}}
                 </a>
               {% else %}
-                <div class="btn btn-sm btn-danger">BOOKED</div>
+                <div class="btn btn-sm btn-danger">BOOKED - {{booking.booker.room}} </div>
               {% endif %}
             </td>
           {% else %}

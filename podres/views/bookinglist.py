@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from podres.models import Booking
 from datetime import datetime
 from django.contrib import messages
+from django.utils.translation import activate, get_language
 
 class BookingListView(LoginRequiredMixin, View):
     template_name = 'booking_list.html'

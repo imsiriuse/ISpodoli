@@ -17,17 +17,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
-INSTALLED_APPS = [
-    "django_bootstrap5",
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'podres',
-]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -38,6 +27,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+INSTALLED_APPS = [
+    'podres',
+    "django_bootstrap5",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+]
+
 
 ROOT_URLCONF = 'reservations.urls'
 
@@ -51,7 +52,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages'
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -110,9 +112,14 @@ LANGUAGE_CODE = 'en-us'
 LANGUAGES = (
     ('en', _('English')),
     ('cs', _('Czech')),
-    ('fr', _('French')),
+    ('ru', _('Russian')),
 )
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+# Set the date and time format for localization
+DATE_FORMAT = 'Y-m-d'          # e.g., '2023-09-26'
+DATETIME_FORMAT = 'Y-m-d H:i:s' # e.g., '2023-09-26 14:30:00'
+SHORT_DATE_FORMAT = 'm/d/Y'    # e.g., '09/26/2023'
