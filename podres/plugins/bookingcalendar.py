@@ -25,7 +25,7 @@ class BookingCalendar(HTMLCalendar):
 
         prev = date(self.year, self.month, self.day) - relativedelta.relativedelta(months=1)
 
-        a('<div style="display: inline-block">')
+        a('<div class="cal-left-arrow">')
         a('<a href="?date=%d-%d-%d"><</a>' % (prev.day, prev.month, prev.year))
         a('</div>')
 

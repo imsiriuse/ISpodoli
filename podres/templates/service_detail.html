@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}
   {{ service.service_type.name }} - {{ service.name }}
@@ -7,9 +8,9 @@
 {% block content %}
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
-  <p><b>Restrictions:</b> {{service.service_type.restriction_value}}x{{service.service_type.block_size}}h/{{service.service_type.restriction_type}}</p>
-  {{calendar.gethtml|safe}}
+  <p><b>{% trans 'Restrictions' %}: </b>{% trans 'Maximum' %} {{service.service_type.restriction_value}} {% trans 'times' %} {{service.service_type.block_size}} {% trans 'hours' %} {% trans 'for' %} {{restriction_name}}</p>
 
+  {{calendar.gethtml|safe}}
 
   {% include 'widgets/timetable.html' with bookings=bookings title="Ongoing bookings" calendar=calendar %}
 </center>

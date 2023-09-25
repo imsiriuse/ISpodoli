@@ -13,6 +13,14 @@ class ServiceDetailView(LoginRequiredMixin, View):
     redirect_field_name = 'next'
 
     @staticmethod
+    def get_restriction_name(service):
+        if service.service_type.restriction_type == 'w':
+            return 'week'
+        if service.service_type.restriction_type == 'd':
+            return 'day'
+        return ''
+
+    @staticmethod
     def parse_query(query):
         result = {}
         if 'date' not in query:
@@ -66,6 +74,7 @@ class ServiceDetailView(LoginRequiredMixin, View):
                 day=queries['date'].day,
             ),
             'bookings': self.timetable(service, queries['date']),
+            'restriction_name': self.get_restriction_name(service),
         }
 
         return render(request, 'service_detail.html', context)

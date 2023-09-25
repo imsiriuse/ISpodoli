@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from podres.models import Booker, Booking
+from podres.models import Booker, Booking, Ban
 from datetime import datetime
 from django.contrib import messages
 from django.utils.translation import activate, get_language
@@ -34,11 +34,14 @@ class UserDetailView(LoginRequiredMixin, View):
         past = past | Booking.objects.filter(date__lt=today.date(), booker=booker)
         past = past.order_by('date', 'hour')
 
+        bans = Ban.objects.filter(booker=booker)
+
         context = {
             'booker': booker,
             'pending': pending,
             'ongoing': ongoing,
             'past': past,
+            'bans': bans,
         }
 
         return render(request, 'user_detail.html', context)
