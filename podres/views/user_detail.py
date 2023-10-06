@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from podres.models import Booker, Booking, Ban
 from datetime import datetime
 from django.contrib import messages
-from django.utils.translation import activate, get_language
+from django.utils.translation import activate, get_language, gettext_lazy as _
 
 class UserDetailView(LoginRequiredMixin, View):
     template_name = 'user_detail.html'
@@ -14,7 +14,7 @@ class UserDetailView(LoginRequiredMixin, View):
     @staticmethod
     def get(request, pk):
         if not request.user.is_staff:
-            messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
+            messages.add_message(request, messages.INFO, _("You are not authorized to do this action."))
             return redirect(reverse("service_list"))
 
         booker = get_object_or_404(Booker, id=pk)

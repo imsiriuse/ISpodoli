@@ -6,6 +6,7 @@ from podres.enums import MAX_DAYS_AHEAD
 from podres.plugins.bookingcalendar import BookingCalendar
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 
 class ServiceDetailView(LoginRequiredMixin, View):
@@ -64,14 +65,14 @@ class ServiceDetailView(LoginRequiredMixin, View):
         referer = request.META.get('HTTP_REFERER', None)
 
         if not service.is_available:
-            messages.add_message(request, messages.INFO, "Service is not available")
+            messages.add_message(request, messages.INFO, _("Service is not available"))
 
             if not referer:
                 return redirect(reverse("service_list"))
             return referer
 
         if not self.date_valid(queries['date']):
-            messages.add_message(request, messages.INFO, "Calendar is out of range")
+            messages.add_message(request, messages.INFO, _("Calendar is out of range"))
             if not referer:
                 return redirect(reverse("service_list"))
             return referer
