@@ -21,12 +21,12 @@
   </p>
 </div>
 <div class="container">
-  <h1>Service descriptions and rules</h1>
+  <h1>{% trans "Service descriptions and rules" %}</h1>
   {% for service_type in service_types %}
-    <h2>{{service_type.name}}</h2>
-    <p>{{service_type.description}}</p>
+    <h2>{% trans service_type.name %}</h2>
+    <p>{% trans service_type.description %}</p>
   {% empty %}
-    <p>No service types available.</p>
+    <p>{% trans 'No service types available' %}.</p>
   {% endfor %}
 </div>
 

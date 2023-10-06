@@ -3,21 +3,135 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-21 13:11+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2023-10-06 15:15+0200\n"
+"PO-Revision-Date: 2023-10-06 15:18+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
-"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: .\podres\plugins\bookingcalendar.py:54
+msgid "Mo"
+msgstr "Po"
+
+#: .\podres\plugins\bookingcalendar.py:55
+msgid "Tu"
+msgstr "Ut"
+
+#: .\podres\plugins\bookingcalendar.py:56
+msgid "We"
+msgstr "St"
+
+#: .\podres\plugins\bookingcalendar.py:57
+msgid "Th"
+msgstr "Čt"
+
+#: .\podres\plugins\bookingcalendar.py:58
+msgid "Fr"
+msgstr "Pá"
+
+#: .\podres\plugins\bookingcalendar.py:59
+msgid "Sa"
+msgstr "So"
+
+#: .\podres\plugins\bookingcalendar.py:60
+msgid "Su"
+msgstr "Ne"
+
+#: .\podres\templates\about.html:5 .\podres\templates\base.html:68
+msgid "About"
+msgstr "Informace"
+
+#: .\podres\templates\about.html:11
+msgid "About website"
+msgstr "O webových stránkách"
+
+#: .\podres\templates\about.html:13
+msgid ""
+"\n"
+"    Website is a dormitory service reservation system that helps students "
+"and visitors easily book rooms and services online.\n"
+"    "
+msgstr ""
+"\n"
+"Stránka slouží jako rezervační systém pro kolejní služby, který umožňuje "
+"studentům a návštěvníkům snadno rezervovat místnosti a služby online. "
+
+#: .\podres\templates\about.html:18
+msgid ""
+"\n"
+"    If you have any questions or feedback, please don't hesitate to <a "
+"href=\"admin@podres.com\">contact us</a>.\n"
+"    "
+msgstr ""
+"\n"
+"Pokud máte nějaké dotazy nebo zpětnou vazbu, neváhejte nás <a "
+"href=\"admin@podres.com\">kontaktovat</a> "
+
+#: .\podres\templates\about.html:24
+msgid "Service descriptions and rules"
+msgstr "Popis služeb a pravidlá"
+
+#: .\podres\templates\about.html:29
+msgid "No service types available"
+msgstr "Žádné typy služeb k dispozici"
+
+#: .\podres\templates\bans_list.html:7 .\podres\templates\base.html:62
+#: .\podres\templates\user_detail.html:22
+msgid "Bans"
+msgstr "Zákazy"
+
+#: .\podres\templates\bans_list.html:11
+msgid "Blacklist"
+msgstr "Černá listina"
+
+#: .\podres\templates\bans_list.html:13
+msgid "Active"
+msgstr "Aktivní"
+
+#: .\podres\templates\bans_list.html:17 .\podres\templates\bans_list.html:38
+#: .\podres\templates\profile.html:16 .\podres\templates\user_detail.html:16
+#: .\podres\templates\user_list.html:11 .\podres\templates\widgets\bans.html:9
+msgid "Name"
+msgstr "Jméno"
+
+#: .\podres\templates\bans_list.html:18 .\podres\templates\bans_list.html:39
+#: .\podres\templates\booking_detail.html:13
+#: .\podres\templates\widgets\bans.html:10
+#: .\podres\templates\widgets\bookings.html:11
+msgid "Service"
+msgstr "Služba"
+
+#: .\podres\templates\bans_list.html:19 .\podres\templates\bans_list.html:40
+#: .\podres\templates\widgets\bans.html:11
+msgid "Reason"
+msgstr "Důvod"
+
+#: .\podres\templates\bans_list.html:20 .\podres\templates\bans_list.html:41
+#: .\podres\templates\widgets\bans.html:12
+msgid "Start Date"
+msgstr "Začátek"
+
+#: .\podres\templates\bans_list.html:21 .\podres\templates\bans_list.html:42
+#: .\podres\templates\widgets\bans.html:13
+msgid "Remaining"
+msgstr "Zůstává"
+
+#: .\podres\templates\bans_list.html:32 .\podres\templates\bans_list.html:53
+msgid "No bans at this time"
+msgstr "Momentálne žádné zákazy"
+
+#: .\podres\templates\bans_list.html:34
+msgid "Past"
+msgstr "Minulý"
 
 #: .\podres\templates\base.html:32
 msgid "Sign out"
@@ -35,31 +149,253 @@ msgstr "Jazyk"
 msgid "Bookings"
 msgstr "Rezervace"
 
-#: .\podres\templates\base.html:59
+#: .\podres\templates\base.html:59 .\podres\templates\user_list.html:4
+#: .\podres\templates\user_list.html:6
 msgid "Users"
 msgstr "Uživatelé"
 
-#: .\podres\templates\base.html:62
-msgid "Bans"
-msgstr "Zákazy"
-
-#: .\podres\templates\base.html:65
+#: .\podres\templates\base.html:65 .\podres\templates\service_list.html:6
 msgid "Services"
 msgstr "Služby"
 
-#: .\podres\templates\base.html:68
-msgid "About"
-msgstr "Informace"
+#: .\podres\templates\booking_detail.html:4
+#: .\podres\templates\booking_detail.html:10
+msgid "Booking detail"
+msgstr "Detail rezervace"
 
-#: .\reservations\settings.py:112
+#: .\podres\templates\booking_detail.html:11 .\podres\templates\profile.html:17
+#: .\podres\templates\user_detail.html:17 .\podres\templates\user_list.html:9
+#: .\podres\templates\widgets\bookings.html:9
+msgid "Room"
+msgstr "Pokoj"
+
+#: .\podres\templates\booking_detail.html:12
+#: .\podres\templates\widgets\bookings.html:10
+msgid "User"
+msgstr "Uživatel"
+
+#: .\podres\templates\booking_detail.html:14
+#: .\podres\templates\widgets\bookings.html:12
+msgid "Date"
+msgstr "Dátum"
+
+#: .\podres\templates\booking_detail.html:15
+#: .\podres\templates\widgets\bookings.html:13
+#: .\podres\templates\widgets\timetable.html:7
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2417
+msgid "Time"
+msgstr "Čas"
+
+#: .\podres\templates\booking_detail.html:16
+msgid "Actions"
+msgstr "Akce"
+
+#: .\podres\templates\booking_list.html:6
+msgid "Booking History"
+msgstr "Historie rezervací"
+
+#: .\podres\templates\booking_list.html:12 .\podres\templates\profile.html:22
+#: .\podres\templates\service_detail.html:17
+#: .\podres\templates\user_detail.html:19
+msgid "Ongoing bookings"
+msgstr "Probíhající rezervace"
+
+#: .\podres\templates\booking_list.html:13
+#: .\podres\templates\user_detail.html:20
+msgid "Pending bookings"
+msgstr "Budoucí rezervace"
+
+#: .\podres\templates\booking_list.html:14
+msgid "Booking history"
+msgstr "Historie rezervací"
+
+#: .\podres\templates\profile.html:6 .\podres\templates\profile.html:10
+#: .\podres\templates\user_detail.html:6 .\podres\templates\user_detail.html:10
+msgid "User profile"
+msgstr "Uživatelský profil"
+
+#: .\podres\templates\profile.html:12 .\podres\templates\user_detail.html:12
+msgid "STAFF"
+msgstr "Zaměstnanec"
+
+#: .\podres\templates\profile.html:15 .\podres\templates\user_detail.html:15
+#: .\podres\templates\user_list.html:10
+msgid "Username"
+msgstr "Uživatelské jméno"
+
+#: .\podres\templates\profile.html:19
+msgid "User settings"
+msgstr "Nastavení"
+
+#: .\podres\templates\profile.html:20
+msgid "Change password"
+msgstr "Změnit heslo"
+
+#: .\podres\templates\profile.html:23
+msgid "Ongoing bans"
+msgstr "Probíhající zákazy"
+
+#: .\podres\templates\registration\logged_out.html:5
+#: .\podres\templates\registration\logged_out.html:9
+msgid "Logged out"
+msgstr "Odhlášen"
+
+#: .\podres\templates\registration\logged_out.html:10
+msgid "Click here to login again"
+msgstr "Kliknite zde pro opětovné přihlášení"
+
+#: .\podres\templates\registration\login.html:5
+msgid "Login"
+msgstr "Příhlášení"
+
+#: .\podres\templates\registration\login.html:10
+msgid "Your username and password didn't match. Please try again"
+msgstr "Uživatelské jméno a heslo je nesprávné. Zkuste to znova"
+
+#: .\podres\templates\registration\login.html:15
+msgid ""
+"\n"
+"      <p>Your account doesn't have access to this page. To proceed,\n"
+"      please login with an account that has access.</p>\n"
+"      "
+msgstr ""
+"\n"
+"<p>Váš účet nemá oprávnení k videní této stránky. Pro pokračování, \n"
+"prihláste se s účtem s dostatečným oprávnením.</p> "
+
+#: .\podres\templates\registration\login.html:20
+msgid "Please login to see this page."
+msgstr "Prihláste se k videní této stránky."
+
+#: .\podres\templates\registration\login.html:40
+msgid "Lost password? Contact administrator"
+msgstr "Zapomenuté heslo? Kontaktujte administrátora"
+
+#: .\podres\templates\registration\password_change_done.html:5
+msgid "Password change done"
+msgstr "Proběhla zmena hesla"
+
+#: .\podres\templates\registration\password_change_done.html:9
+msgid "Your password was changed"
+msgstr "Vaše heslo bylo zmněneno"
+
+#: .\podres\templates\registration\password_change_form.html:5
+msgid "Password change"
+msgstr "Zmena hesla"
+
+#: .\podres\templates\registration\password_change_form.html:14
+msgid "Please correct the errors below"
+msgstr "Prosím opravte následující chyby"
+
+#: .\podres\templates\registration\password_change_form.html:18
+msgid ""
+"\n"
+"      Please enter your old password, for security’s sake,\n"
+"      and then enter your new password twice\n"
+"      so we can verify you typed it in correctly.\n"
+"        "
+msgstr ""
+"\n"
+"Z bezpečnostních důvodů prosím zadejte vaše staré heslo,\n"
+"a poté zadejte nové heslo dva krát\n"
+"aby se ověřilo zda bylo zadáno správně. "
+
+#: .\podres\templates\service_detail.html:13
+msgid "Restrictions"
+msgstr "Obmedzení"
+
+#: .\podres\templates\service_detail.html:13
+msgid "Maximum"
+msgstr "Maximálně"
+
+#: .\podres\templates\service_detail.html:13
+msgid "times"
+msgstr "krát"
+
+#: .\podres\templates\service_detail.html:13
+msgid "hours"
+msgstr "hodín"
+
+#: .\podres\templates\service_detail.html:13
+msgid "for"
+msgstr "za"
+
+#: .\podres\templates\service_list.html:11
+msgid "Available Services"
+msgstr "Dostupní služby"
+
+#: .\podres\templates\service_list.html:35
+#: .\podres\templates\service_list.html:40
+msgid "No services available"
+msgstr "Žádné služby k dispozici"
+
+#: .\podres\templates\user_detail.html:21
+msgid "Past bookings"
+msgstr "Minulé rezervace"
+
+#: .\podres\templates\widgets\bans.html:20
+msgid "days"
+msgstr "dní"
+
+#: .\podres\templates\widgets\bans.html:25
+msgid ""
+"\n"
+"        No bans at this time.\n"
+"        "
+msgstr ""
+"\n"
+"Momentálně žádné zákazy "
+
+#: .\podres\templates\widgets\bookings.html:14
+msgid "View"
+msgstr "Detail"
+
+#: .\podres\templates\widgets\bookings.html:33
+msgid "No bookings found."
+msgstr "Žádné rezervace"
+
+#: .\podres\templates\widgets\timetable.html:4
+msgid "Bookings for"
+msgstr "Rezervace pro"
+
+#: .\podres\templates\widgets\timetable.html:8
+msgid "Booking"
+msgstr "Rezervace"
+
+#: .\podres\templates\widgets\timetable.html:20
+msgid "BOOKED"
+msgstr "Rezervováno"
+
+#: .\podres\templates\widgets\timetable.html:26
+msgid "Book"
+msgstr "Rezervovat"
+
+#: .\podres\templates\widgets\timetable.html:32
+msgid "No bookings available at this time"
+msgstr "Momentálne žádné rezervace"
+
+#: .\podres\views\bookinglist.py:16 .\podres\views\user_detail.py:17
+#: .\podres\views\user_list.py:18 .\podres\views\views.py:33
+msgid "You are not authorized to do this action."
+msgstr "Nemáte oprávnení na vykonaní operace"
+
+#: .\podres\views\servicedetail.py:68
+msgid "Service is not available"
+msgstr "Služba není k dispozici"
+
+#: .\podres\views\servicedetail.py:75
+msgid "Calendar is out of range"
+msgstr "Kalendár mimo rozsah"
+
+#: .\reservations\settings.py:118
 msgid "English"
 msgstr "Anglicky"
 
-#: .\reservations\settings.py:113
+#: .\reservations\settings.py:119
 msgid "Czech"
 msgstr "Česky"
 
-#: .\reservations\settings.py:114
+#: .\reservations\settings.py:120
 msgid "Russian"
 msgstr "Rusky"
 
@@ -68,11 +404,11 @@ msgstr "Rusky"
 #: .\venv\Lib\site-packages\bootstrap4\templates\bootstrap4\messages.html:4
 #: .\venv\Lib\site-packages\django_bootstrap5\components.py:26
 msgid "close"
-msgstr ""
+msgstr "zavřít"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
-msgstr ""
+msgstr "Správy"
 
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
 msgid "Site Maps"
@@ -183,6 +519,7 @@ msgid_plural ""
 "%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:435
 #, python-format
@@ -194,6 +531,7 @@ msgid_plural ""
 "%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:458
 #: .\venv\Lib\site-packages\django\forms\fields.py:347
@@ -207,6 +545,7 @@ msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:465
 #, python-format
@@ -214,6 +553,7 @@ msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:470
 #, python-format
@@ -223,6 +563,7 @@ msgid_plural ""
 "Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:539
 #, python-format
@@ -448,10 +789,6 @@ msgid ""
 "invalid time."
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2417
-msgid "Time"
-msgstr ""
-
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2525
 msgid "URL"
 msgstr ""
@@ -568,6 +905,7 @@ msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:627
 msgid "Please either submit a file or check the clear checkbox, not both."
@@ -628,6 +966,7 @@ msgid "Please submit at most %(num)d form."
 msgid_plural "Please submit at most %(num)d forms."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:72
 #, python-format
@@ -635,6 +974,7 @@ msgid "Please submit at least %(num)d form."
 msgid_plural "Please submit at least %(num)d forms."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:483
 #: .\venv\Lib\site-packages\django\forms\formsets.py:490
@@ -722,6 +1062,7 @@ msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:902
 #, python-format
@@ -830,35 +1171,35 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:25
 msgid "January"
-msgstr ""
+msgstr "Leden"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:26
 msgid "February"
-msgstr ""
+msgstr "Únor"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:27
 msgid "March"
-msgstr ""
+msgstr "Březen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:28
 msgid "April"
-msgstr ""
+msgstr "Duben"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:29
 msgid "May"
-msgstr ""
+msgstr "Kveten"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:30
 msgid "June"
-msgstr ""
+msgstr "Červen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:31
 msgid "July"
-msgstr ""
+msgstr "Červenec"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:32
 msgid "August"
-msgstr ""
+msgstr "Spren"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:33
 msgid "September"
@@ -866,15 +1207,15 @@ msgstr "Září"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:34
 msgid "October"
-msgstr ""
+msgstr "Říjen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:35
 msgid "November"
-msgstr ""
+msgstr "Listopad"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:36
 msgid "December"
-msgstr ""
+msgstr "Prosinec"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:39
 msgid "jan"
@@ -987,62 +1328,62 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\utils\dates.py:67
 msgctxt "alt. month"
 msgid "January"
-msgstr ""
+msgstr "Leden"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:68
 msgctxt "alt. month"
 msgid "February"
-msgstr ""
+msgstr "Únor"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:69
 msgctxt "alt. month"
 msgid "March"
-msgstr ""
+msgstr "Březen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:70
 msgctxt "alt. month"
 msgid "April"
-msgstr ""
+msgstr "Duben"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:71
 msgctxt "alt. month"
 msgid "May"
-msgstr ""
+msgstr "Květen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:72
 msgctxt "alt. month"
 msgid "June"
-msgstr ""
+msgstr "Červen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:73
 msgctxt "alt. month"
 msgid "July"
-msgstr ""
+msgstr "Červenec"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:74
 msgctxt "alt. month"
 msgid "August"
-msgstr ""
+msgstr "Srpen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:75
 msgctxt "alt. month"
 msgid "September"
-msgstr ""
+msgstr "Září"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:76
 msgctxt "alt. month"
 msgid "October"
-msgstr ""
+msgstr "Říjen"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:77
 msgctxt "alt. month"
 msgid "November"
-msgstr ""
+msgstr "Listopad"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:78
 msgctxt "alt. month"
 msgid "December"
-msgstr ""
+msgstr "Prosinec"
 
 #: .\venv\Lib\site-packages\django\utils\ipv6.py:8
 msgid "This is not a valid IPv6 address."
@@ -1070,6 +1411,7 @@ msgid "%(num)d year"
 msgid_plural "%(num)d years"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:10
 #, python-format
@@ -1077,6 +1419,7 @@ msgid "%(num)d month"
 msgid_plural "%(num)d months"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:11
 #, python-format
@@ -1084,6 +1427,7 @@ msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:12
 #, python-format
@@ -1091,6 +1435,7 @@ msgid "%(num)d day"
 msgid_plural "%(num)d days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:13
 #, python-format
@@ -1098,6 +1443,7 @@ msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:14
 #, python-format
@@ -1105,6 +1451,7 @@ msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:111
 msgid "Forbidden"
@@ -1134,8 +1481,8 @@ msgid ""
 "If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
 "including the “Referrer-Policy: no-referrer” header, please remove them. The "
 "CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
-"\" …> for links to third-party sites."
+"If you’re concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:136
@@ -1244,9 +1591,9 @@ msgstr ""
 #, python-format
 msgid ""
 "You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
-"\">DEBUG=True</a> is in your settings file and you have not configured any "
-"URLs."
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
