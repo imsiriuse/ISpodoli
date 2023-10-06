@@ -5,6 +5,8 @@ from podres.models import Booker
 from datetime import datetime
 from django.contrib import messages
 from django.utils.translation import activate, get_language
+from django.utils.translation import gettext_lazy as _
+
 
 class UserListView(LoginRequiredMixin, View):
     template_name = 'user_list.html'
@@ -13,10 +15,10 @@ class UserListView(LoginRequiredMixin, View):
 
     def get(self, request):
         if not request.user.is_staff:
-            messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
+            messages.add_message(request, messages.INFO, _("You are not authorized to do this action."))
             return redirect(reverse("service_list"))
 
-        bookers = Booker.objects.filter()
+        bookers = Booker.objects.filter().order_by('room')
 
         context = {
             'bookers': bookers,
