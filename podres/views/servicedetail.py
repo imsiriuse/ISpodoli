@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from podres.models import Service, Booking
 from datetime import date, datetime, timedelta
 from podres.enums import MAX_DAYS_AHEAD
@@ -61,10 +61,20 @@ class ServiceDetailView(LoginRequiredMixin, View):
         service = get_object_or_404(Service, id=pk)
 
         queries = self.parse_query(request.GET.dict())
+        referer = request.META.get('HTTP_REFERER', None)
+
+        if not service.is_available:
+            messages.add_message(request, messages.INFO, "Service is not available")
+
+            if not referer:
+                return redirect(reverse("service_list"))
+            return referer
 
         if not self.date_valid(queries['date']):
             messages.add_message(request, messages.INFO, "Calendar is out of range")
-            return redirect(request.META.get('HTTP_REFERER'))
+            if not referer:
+                return redirect(reverse("service_list"))
+            return referer
 
         context = {
             'service': service,
