@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Services{% endblock %}
+{% block title %}
+{% trans "Services" %}
+{% endblock %}
 
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/services.css' %}">
-  <h1>Available Services</h1>
+  <h1> {% trans "Available Services" %}</h1>
   <div class="service-list">
     {% for service_type in service_types %}
       <div class="service-type">
@@ -29,13 +32,12 @@
               </div>
             </a>
           {% empty %}
-            <p>No services available</p>
+            <p>{% trans "No services available" %}</p>
           {% endfor %}
         </div>
       </div>
     {% empty %}
-      <p>No services available</p>
+      <p>{% trans "No services available" %}</p>
     {% endfor %}
   </div>
-
 {% endblock %}

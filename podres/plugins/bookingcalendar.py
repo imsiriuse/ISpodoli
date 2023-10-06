@@ -1,6 +1,7 @@
 from calendar import HTMLCalendar
 from datetime import datetime, date
 from dateutil import relativedelta
+from django.utils.translation import gettext_lazy as _
 
 
 class BookingCalendar(HTMLCalendar):
@@ -24,6 +25,7 @@ class BookingCalendar(HTMLCalendar):
         after = date(self.year, self.month, self.day) + relativedelta.relativedelta(months=1)
         month_name = self.formatmonthname(self.year, self.month, withyear=False)
 
+        month_name = _(month_name)
 
         v = []
         a = v.append
@@ -48,14 +50,17 @@ class BookingCalendar(HTMLCalendar):
 
         a('<table class="cal-days">')
         a('<thead><tr>')
-        a('<th>Mo</th>')
-        a('<th>Tu</th>')
-        a('<th>We</th>')
-        a('<th>Th</th>')
-        a('<th>Fr</th>')
-        a('<th>Sa</th>')
-        a('<th>Su</th>')
-        a('</thead></tr>')
+
+        a('<th>%s</th>' % _('Mo'))
+        a('<th>%s</th>' % _('Tu'))
+        a('<th>%s</th>' % _('We'))
+        a('<th>%s</th>' % _('Th'))
+        a('<th>%s</th>' % _('Fr'))
+        a('<th>%s</th>' % _('Sa'))
+        a('<th>%s</th>' % _('Su'))
+
+        a('</tr>')
+        a('</thead>')
 
         for week in self.monthdays2calendar(self.year, self.month):
             a(self.formatweek(week))

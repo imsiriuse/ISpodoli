@@ -1,10 +1,11 @@
 {% load booking_tags %}
+{% load i18n %}
 
-<h2>Bookings for {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h2>
+<h2>{% trans "Bookings for" %} {{ calendar.day }} - {{calendar.month}} - {{calendar.year}} </h2>
     <table class="table table-striped">
       <tr>
-        <th scope="col">Time</th>
-        <th scope="col">Booking</th>
+        <th scope="col">{% trans "Time" %}</th>
+        <th scope="col">{% trans "Booking" %}</th>
       </tr>
       {% for booking, hour in bookings %}
        <tr>
@@ -16,18 +17,18 @@
                   {{booking.booker.user.first_name}} {{booking.booker.user.last_name}} - {{booking.booker.room}}
                 </a>
               {% else %}
-                <div class="btn btn-sm btn-danger">BOOKED - {{booking.booker.room}} </div>
+                <div class="btn btn-sm btn-danger">{% trans "BOOKED" %} - {{booking.booker.room}} </div>
               {% endif %}
             </td>
           {% else %}
             <td>
-              <a href="{% url 'create_booking' serviceid=service.id year=calendar.year month=calendar.month day=calendar.day hour=hour %}">
-                Book
+              <a href="{% url 'create_booking' serviceid=service.id year=calendar.year month=calendar.month day=calendar.day hour=hour %}" class="btn btn-danger btn-sm">
+                {% trans "Book" %}
               </a>
             </td>
           {% endif %}
         </tr>
       {% empty %}
-        <p>No bookings available at this time.</p>
+        <p>{% trans "No bookings available at this time" %}</p>
       {% endfor %}
     </table>

@@ -21,8 +21,6 @@ class UserDetailView(LoginRequiredMixin, View):
 
         today = datetime.now()
 
-        print(len(Booking.objects.filter(booker=booker)))
-
         pending = Booking.objects.filter(date=today.date(), hour__gt=today.hour, booker=booker)
         pending = pending | Booking.objects.filter(date__gt=today.date(), booker=booker)
         pending = pending.order_by('date', 'hour')
