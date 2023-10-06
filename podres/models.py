@@ -39,20 +39,9 @@ class Service(models.Model):
         return f"{self.service_type.name} {self.name}"
 
 
-
-class Room(models.Model):
-    block = models.CharField(max_length=1, choices=Building.choices, default=Building.A)
-    floor = models.CharField(max_length=1, choices=Floor.choices, default=Floor.ZERO)
-    side = models.CharField(max_length=1, choices=Side.choices, default=Side.NO)
-    room = models.CharField(max_length=4, default="")
-
-    def __str__(self):
-        return f"{self.block}{self.room}{self.side}"
-
-
 class Booker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.CharField(max_length=5)
 
     def clean(self):
         if not self.user:

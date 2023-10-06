@@ -3,3 +3,5 @@ venv/
 podres/migrations/
 .env
 /static/
+scripts/data/
+fixtures/
