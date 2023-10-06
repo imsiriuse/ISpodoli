@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}
   {{ service.service_type.name }} - {{ service.name }}
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bookingcalendar.css' %}">
 <center>
   <h1>{{ service.service_type.name }} - {{ service.name }}</h1>
   <p><b>{% trans 'Restrictions' %}: </b>{% trans 'Maximum' %} {{service.service_type.restriction_value}} {% trans 'times' %} {{service.service_type.block_size}} {% trans 'hours' %} {% trans 'for' %} {{restriction_name}}</p>

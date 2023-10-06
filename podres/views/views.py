@@ -12,8 +12,16 @@ from urllib.parse import urlparse
 from datetime import datetime
 
 def service_list(request):
-    services = Service.objects.filter(is_available=True)
-    return render(request, 'service_list.html', {'services': services, 'media_url': settings.MEDIA_URL})
+    service_types = []
+    for service_type in ServiceType.objects.filter():
+        service_types.append(Service.objects.filter(service_type=service_type).order_by('name'))
+
+    context = {
+        'service_types': service_types,
+        'media_url': settings.MEDIA_URL,
+    }
+
+    return render(request, 'service_list.html', context)
 
 def about(request):
     service_types = ServiceType.objects.filter()
@@ -27,8 +35,6 @@ def booking_detail(request, pk):
 
     booking = get_object_or_404(Booking, id=pk)
     return render(request, 'booking_detail.html', {'booking': booking})
-
-
 
 
 def change_language(request, lang_code):

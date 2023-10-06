@@ -2,25 +2,40 @@
 {% load static %}
 
 {% block title %}Services{% endblock %}
+
 {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/services.css' %}">
   <h1>Available Services</h1>
-<center>
-    <div style="max-width: 850px">
-    {% for service in services %}
-        <div style="float: left">
-          <a href="{% url 'service_detail' service.id %}">
-            {{ service.service_type.name }} - {{ service.name }}
-          <br>
-          {% if service.service_type.image %}
-            <img src="{{ media_url }}{{ service.service_type.image }}" alt="{{ service.service_type.name }}" width="400" height="400">
-          {% else %}
-            <img src="{% static 'img/default.svg' %}" alt="{{ service.service_type.name }}" width="400" height="400">
-          {% endif %}
-          </a>
+  <div class="service-list">
+    {% for service_type in service_types %}
+      <div class="service-type">
+        {% if service_type.0.service_type.image %}
+          <img src="{{ service_type.0.service_type.image.url }}" alt="{{ service_type.0.service_type.name }}">
+        {% else %}
+          <img src="{% static 'images/default_service.png' %}" alt="{{ service_type.0.service_type.name }}">
+        {% endif %}
+
+        <h2>{{ service_type.0.service_type.name }}</h2>
+        <p>{{ service_type.0.service_type.description }}</p>
+
+        <div class="services">
+          {% for service in service_type %}
+            <a href="{% url 'service_detail' service.id %}"
+              {% if not service.is_available %}
+                class="service-unavailable"
+              {% endif %}>
+              <div class="service">
+                <h3>{{ service.name }}</h3>
+              </div>
+            </a>
+          {% empty %}
+            <p>No services available</p>
+          {% endfor %}
         </div>
-    {% empty %}
-      <p>No services available at this time.</p>
-    {% endfor %}
       </div>
-  </center>
+    {% empty %}
+      <p>No services available</p>
+    {% endfor %}
+  </div>
+
 {% endblock %}

@@ -1,0 +1,56 @@
+.service-list {
+    width: auto;
+    text-align: center;
+}
+
+.service-type {
+    padding: 10px;
+    padding-top: 20px;
+    width: 340px;
+    height: 350px;
+    margin-left: 12px;
+    margin-top: 13px;
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+}
+
+.service-type img {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.services {
+    margin-top: 35px;
+}
+
+.service {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #e6e6e6;
+}
+
+.services a {
+    color: black;
+    text-decoration: none;
+}
+
+.service h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.service-unavailable div {
+    background-color: #e6e6e6;
+}
+
+.service-unavailable h3 {
+    color: #d3d3d3;
+}
+
+.service-unavailable {
+    cursor: not-allowed;
+    pointer-events: none;
+}
