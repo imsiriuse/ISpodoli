@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}
-  Booking detail
+  {% trans "Booking detail" %}
 {% endblock %}
 
 {% load booking_tags %}
 
 {% block content %}
-  <h1>Booking detail</h1>
-    <p><b>Room:</b> {{ booking.booker.room }}</p>
-    <p><b>User:</b> {{ booking.booker }}</p>
-    <p><b>Service:</b> {{ booking.service }}</p>
-    <p><b>Date:</b> {{ booking.date|date:"SHORT_DATE_FORMAT" }}</p>
-    <p><b>Time:</b> {{ booking.hour|hour_to_time:booking.service.service_type.block_size }}</p>
-  <h2>Actions</h2>
+  <h1>{% trans "Booking detail" %}</h1>
+    <p><b>{% trans "Room" %}:</b> {{ booking.booker.room }}</p>
+    <p><b>{% trans "User" %}:</b> {{ booking.booker }}</p>
+    <p><b>{% trans "Service" %}:</b> {{ booking.service }}</p>
+    <p><b>{% trans "Date" %}:</b> {{ booking.date|date:"SHORT_DATE_FORMAT" }}</p>
+    <p><b>{% trans "Time" %}:</b> {{ booking.hour|hour_to_time:booking.service.service_type.block_size }}</p>
+  <h2>{% trans "Actions" %}</h2>
   <ul>
     <li><a href="{% url 'delete_booking' booking.id %}" >Delete</a></li>
   </ul>

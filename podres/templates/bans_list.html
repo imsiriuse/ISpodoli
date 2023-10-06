@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% load booking_tags %}
-{% block title %}Bans{% endblock %}
+
+{% block title %}
+{% trans "Bans" %}
+{% endblock %}
+
 {% block content %}
-  <h1>Blacklist</h1>
+  <h1>{% trans "Blacklist" %}</h1>
 <center>
+  <h2> {% trans "Active" %}</h2>
   {% for ban in bans %}
   <table class="table table-striped">
       <tr>
-        <th>Name</th>
-        <th>Service</th>
-        <th>Reason</th>
-        <th>Start Date</th>
-        <th>Remaining</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Service" %}</th>
+        <th>{% trans "Reason" %}</th>
+        <th>{% trans "Start Date" %}</th>
+        <th>{% trans "Remaining" %}</th>
       </tr>
       <tr>
         <td>{{ ban.booker.user.first_name }} {{ ban.booker.user.last_name }}</td>
@@ -23,7 +29,28 @@
       </tr>
   </table>
     {% empty %}
-    <p>No bans at this time.</p>
+    <p>{% trans "No bans at this time" %}.</p>
+  {% endfor %}
+  <h2>{% trans "Past" %}</h2>
+  {% for ban in past_bans %}
+  <table class="table table-striped">
+      <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Service" %}</th>
+        <th>{% trans "Reason" %}</th>
+        <th>{% trans "Start Date" %}</th>
+        <th>{% trans "Remaining" %}</th>
+      </tr>
+      <tr>
+        <td>{{ ban.booker.user.first_name }} {{ ban.booker.user.last_name }}</td>
+        <td>{{ ban.service_type }}</td>
+        <td>{{ ban.reason }}</td>
+        <td>{{ ban.start_date|date:"SHORT_DATE_FORMAT" }}</td>
+        <td>{{ ban|remaining_time }} days</td>
+      </tr>
+  </table>
+    {% empty %}
+    <p>{% trans "No bans at this time" %}.</p>
   {% endfor %}
 </center>
 {% endblock %}

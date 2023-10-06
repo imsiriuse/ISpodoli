@@ -3,13 +3,13 @@
 {% load l10n %}
 
 {% block title %}
-  Booking History
+  {% trans "Booking History" %}
 {% endblock %}
 
 {% load booking_tags %}
 
 {% block content %}
-{% include 'widgets/bookings.html' with bookings=ongoing title="Ongoing bookings" %}
-{% include 'widgets/bookings.html' with bookings=pending title="Pending bookings" %}
-{% include 'widgets/bookings.html' with bookings=bookings title="Booking history" %}
+{% include 'widgets/bookings.html' with bookings=ongoing title=_("Ongoing bookings") %}
+{% include 'widgets/bookings.html' with bookings=pending title=_("Pending bookings") %}
+{% include 'widgets/bookings.html' with bookings=bookings title=_("Booking history") %}
 {% endblock %}

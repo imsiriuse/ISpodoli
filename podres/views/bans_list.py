@@ -12,9 +12,13 @@ class BansListView(LoginRequiredMixin, View):
     def get(self, request):
         bans = Ban.objects.filter(start_date__lte=date.today()).order_by('-start_date')
         bans = filter(lambda x: x.start_date + timedelta(x.duration) > date.today(), bans)
+
+        past_bans = Ban.objects.filter().order_by('-start_date')
+        past_bans = filter(lambda x: x.start_date + timedelta(x.duration) <= date.today(), past_bans)
+
         context = {
-            'bans': bans
+            'bans': bans,
+            'past_bans': past_bans,
         }
 
         return render(request, self.template_name, context)
-

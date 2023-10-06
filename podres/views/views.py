@@ -30,7 +30,7 @@ def about(request):
 @login_required
 def booking_detail(request, pk):
     if not request.user.is_staff:
-        messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
+        messages.add_message(request, messages.INFO, _("You are not authorized to do this action."))
         return redirect(reverse("service_list"))
 
     booking = get_object_or_404(Booking, id=pk)

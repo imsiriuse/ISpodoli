@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, reverse
 from podres.models import Booking
 from datetime import datetime
 from django.contrib import messages
-from django.utils.translation import activate, get_language
+from django.utils.translation import activate, get_language, gettext_lazy as _
 
 class BookingListView(LoginRequiredMixin, View):
     template_name = 'booking_list.html'
@@ -13,7 +13,7 @@ class BookingListView(LoginRequiredMixin, View):
 
     def get(self, request):
         if not request.user.is_staff:
-            messages.add_message(request, messages.INFO, "You are not authorized to do this action.")
+            messages.add_message(request, messages.INFO, _("You are not authorized to do this action."))
             return redirect(reverse("service_list"))
 
         today = datetime.now()

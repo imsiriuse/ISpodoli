@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 {% load booking_tags %}
+{% load i18n %}
 
 {% block title %}
-  User profile
+  {% trans "User profile" %}
 {% endblock %}
 
 {% block content %}
-<h1>User profile</h1>
+<h1>{% trans "User profile" %}</h1>
 {% if user.is_staff %}
-  <p><b>STAFF</b></p>
+  <p><b>{% trans "STAFF" %}</b></p>
 {% endif %}
 
-<p><b>Username:</b> {{ user }}</p>
-<p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
-<p><b>Room:</b> {{ user.booker.room }}</p>
+<p><b>{% trans "Username" %}:</b> {{ user }}</p>
+<p><b>{% trans "Name" %}:</b> {{ user.first_name }} {{ user.last_name }}</p>
+<p><b>{% trans "Room" %}:</b> {{ user.booker.room }}</p>
 
-<h2>User settings</h2>
-<p><a href="{% url 'password_change' %}">Change password</a></p>
+<h2>{% trans "User settings" %}</h2>
+<p><a href="{% url 'password_change' %}" class="btn">{% trans "Change password" %}</a></p>
 
-{% include 'widgets/bookings.html' with bookings=bookings title="Ongoing bookings" %}
-{% include 'widgets/bans.html' with bans=bans title="Ongoing bans" %}
+{% include 'widgets/bookings.html' with bookings=bookings title=_("Ongoing bookings") %}
+{% include 'widgets/bans.html' with bans=bans title=_("Ongoing bans") %}
 
 {% endblock %}
