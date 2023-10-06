@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+  {% trans "About" %}
+{% endblock %}
 
 {% block content %}
 
 <div class="container">
-  <h1>About website</h1>
-  <p>Website is a dormitory service reservation system that helps students and visitors easily book rooms and services online.</p>
-  <p>If you have any questions or feedback, please don't hesitate to <a href="imsiriuse@gmail.com">contact us</a>.</p>
+  <h1>{% trans "About website" %} </h1>
+  <p>
+    {% blocktrans %}
+    Website is a dormitory service reservation system that helps students and visitors easily book rooms and services online.
+    {% endblocktrans %}
+  </p>
+  <p>
+    {% blocktrans %}
+    If you have any questions or feedback, please don't hesitate to <a href="admin@podres.com">contact us</a>.
+    {% endblocktrans %}
+  </p>
 </div>
 <div class="container">
   <h1>Service descriptions and rules</h1>
