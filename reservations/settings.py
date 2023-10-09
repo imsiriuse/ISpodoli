@@ -106,7 +106,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS =(
     os.path.join(STATIC_ROOT, 'css/'),
-    os.path.join(STATIC_ROOT, 'javascript/'),
     os.path.join(STATIC_ROOT, 'img/')
 )
 
